@@ -1,0 +1,33 @@
+CFLAGS	= -I/usr/local/include -L/usr/local/lib -O3 -Wall
+
+OUTS	= primegen primedigit mersenne fermat twinprime twinprime2 brotherprime brotherprime2
+
+
+all:	$(OUTS)
+
+primegen:	primegen.c
+	cc $(CFLAGS) -o primegen -lgmp primegen.c
+
+primedigit:	primedigit.c
+	cc $(CFLAGS) -o primedigit primedigit.c
+
+mersenne:	mersenne.c
+	cc $(CFLAGS) -o mersenne -lgmp mersenne.c
+
+fermat:	fermat.c
+	cc $(CFLAGS) -o fermat -lgmp fermat.c
+
+twinprime:	twinprime.c
+	cc $(CFLAGS) -o twinprime twinprime.c
+
+twinprime2:	twinprime2.c
+	cc $(CFLAGS) -o twinprime2 twinprime2.c
+
+brotherprime:	brotherprime.c
+	cc $(CFLAGS) -o brotherprime brotherprime.c
+
+brotherprime2:	brotherprime2.c
+	cc $(CFLAGS) -o brotherprime2 brotherprime2.c
+
+clean:
+	rm -f $(OUTS)
