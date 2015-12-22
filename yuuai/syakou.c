@@ -18,7 +18,7 @@ int main( int ac, char *av[] )
             array[i * n] += n;
     }
 
-    /*  約数の和が互いの数自身になれば友愛数である  */
+    /*  約数の和が互いの数自身になれば社交数である  */
     for( n = 1; n < MAX_ARRAY; n++ ) {
         n2 = array[n];
         if( n2 >= MAX_ARRAY )
