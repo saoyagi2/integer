@@ -3,7 +3,7 @@
 #include <limits.h>
 
 #define MAX_ARRAY   (100000000)
-#define MAX_N (1000000000000)
+#define MAX_N (10000000000000)
 #define START_R (0x40000000)
 
 char    array[MAX_ARRAY];
