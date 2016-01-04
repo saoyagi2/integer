@@ -50,7 +50,8 @@ int main( int ac, char *av[] )
         /*  ふるいで残った数は素数である    */
         for( n = 0; n < arraysize; n++ ) {
             if( array[n] == 1 ) {
-                printf( "%lld\n", base + n );
+                printf( "%lld\n", base + n - prev );
+                prev = base + n;
             }
         }
     }
