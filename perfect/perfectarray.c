@@ -7,15 +7,16 @@ int array[MAX_ARRAY];
 
 int main( int ac, char *av[] )
 {
-    int base, arraysize, n, max_n, i;
+    int base, arraysize, n, min_n, max_n, i;
 
     /*  コマンドラインから完全数探索範囲を決定する    */
-    if( ac < 2 )
+    if( ac < 3 )
         return( 1 );
-    max_n = strtol( av[1], NULL, 10 );
+    min_n = strtol( av[1], NULL, 10 );
+    max_n = strtol( av[2], NULL, 10 );
 
     /*  MAX_ARRAY分ごとの整数区間を調べる   */
-    for( base = 2; base < max_n; base += MAX_ARRAY ) {
+    for( base = min_n; base < max_n; base += MAX_ARRAY ) {
         /*  整数区間配列の大きさを決める    */
         if( max_n - base + 1 > MAX_ARRAY )
             arraysize = MAX_ARRAY;
