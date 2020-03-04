@@ -6,7 +6,7 @@ int main( int ac, char *av[] )
     long long n, p, d, d2;
     char buf[1024];
 
-   /*  コマンドラインから差を決定する    */
+    /*  コマンドラインから差を決定する    */
     if( ac < 2 )
         return( 1 );
     d2 = strtoll( av[1], NULL, 10 );

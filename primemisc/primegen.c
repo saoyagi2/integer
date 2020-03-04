@@ -9,7 +9,7 @@ int main( int ac, char *av[] )
     int   a, b, c;
     mpz_t n, n2, max_n, tmp, tmp2;
 
-    /*  コマンドラインから素数探索範囲を決定する    */
+    /*  コマンドラインから係数と探索範囲を決定する    */
     if( ac < 5 )
         return( 1 );
     a = strtol( av[1], NULL, 10 );

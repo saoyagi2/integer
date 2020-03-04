@@ -16,7 +16,7 @@ int main( int ac, char *av[] )
 {
     long long base, arraysize, n, i, j, prev;
 
-	/*  序数側の素数一覧を生成  */
+    /*  序数側の素数一覧を生成  */
     if( !initprimelist() )
         return( 0 );
 

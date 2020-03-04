@@ -53,7 +53,7 @@ int isprime( mpz_t n )
     mpz_init( n2 );
     mpz_init( tmp );
 
-    /*  sqrt(n)+1を求める */
+    /*  sqrt(n)を求める */
     mpz_sqrt( n2, n );
 
     /*  n2以下の2,3の倍数以外での剰余が0かどうか調べる   */
