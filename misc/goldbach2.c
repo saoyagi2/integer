@@ -66,7 +66,7 @@ void initarray( void )
 
     /*  配列をふるいにかける    */
     for( n = 2; n <= MAX_ARRAY_SQRT; n++ ) {
-        if( array[n] == 0 ) {
+        if( array[n] == 1 ) {
             for( i = n * n; i < MAX_ARRAY; i += n )
                 array[i] = 0;
         }
