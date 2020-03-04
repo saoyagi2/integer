@@ -6,17 +6,18 @@ int isprime( mpz_t n );
 
 int main( int ac, char *av[] )
 {
-    mpz_t n, tmp, max_n;
+    mpz_t n, tmp, min_n, max_n;
 
     /*  コマンドラインから素数探索範囲を決定する    */
-    if( ac < 2 )
+    if( ac < 3 )
         return( 1 );
-    mpz_init_set_str( max_n, av[1], 10 );
+    mpz_init_set_str( min_n, av[1], 10 );
+    mpz_init_set_str( max_n, av[2], 10 );
     mpz_init( n );
     mpz_init( tmp );
 
     /*  探索範囲の数を調べる    */
-    mpz_set_ui( n, 1 );
+    mpz_set( n, min_n );
     while( mpz_cmp( n, max_n ) <= 0 ) {
         if( isprime( n ) )
             gmp_printf( "%Zd\n", n );

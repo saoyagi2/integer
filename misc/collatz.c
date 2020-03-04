@@ -2,19 +2,20 @@
 
 int main( int ac, char *av[] )
 {
-    mpz_t n, n2, max_n, tmp;
+    mpz_t n, n2, min_n, max_n, tmp;
 
     /*  コマンドラインから探索範囲を決定する    */
-    if( ac < 2 )
+    if( ac < 3 )
         return( 1 );
-    mpz_init_set_str( max_n, av[1], 10 );
+    mpz_init_set_str( min_n, av[1], 10 );
+    mpz_init_set_str( max_n, av[2], 10 );
 
     mpz_init( n );
     mpz_init( n2 );
     mpz_init( tmp );
 
     /*  探索範囲の数を調べる    */
-    mpz_set_ui( n, 3 );
+    mpz_set( n, min_n );
     while( mpz_cmp( n, max_n ) <= 0 ) {
         mpz_set( n2, n );
 

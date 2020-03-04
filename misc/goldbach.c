@@ -7,16 +7,18 @@ int isprime( int n );
 
 int main( int ac, char *av[] )
 {
-    int n, max_n, m1, m2;
+    int n, min_n, max_n, m1, m2;
 
     /*  コマンドラインから探索範囲を決定する    */
-    if( ac < 2 )
+    if( ac < 3 )
         return( 1 );
-    max_n = strtol( av[1], NULL, 10 );
+    min_n = strtol( av[1], NULL, 10 );
+    min_n = min_n % 2 == 1 ? min_n + 1 : min_n;
+    max_n = strtol( av[2], NULL, 10 );
     max_n = max_n % 2 == 1 ? max_n + 1 : max_n;
 
     /*  探索範囲の数を調べる    */
-    for( n = 6; n <= max_n; n += 2 ) {
+    for( n = min_n; n <= max_n; n += 2 ) {
         /*  足してnになる整数組(m1,m2)が共に素数か調べる    */
         for( m1 = 3, m2 = n - 3; m1 <= m2; m1 += 2, m2 -= 2 ) {
             if( isprime( m1 ) && isprime( m2 ) )

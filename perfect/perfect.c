@@ -3,15 +3,16 @@
 
 int main( int ac, char *av[] )
 {
-    int n, max_n, sum, i;
+    int n, min_n, max_n, sum, i;
 
     /*  コマンドラインから完全数探索範囲を決定する    */
-    if( ac < 2 )
+    if( ac < 3 )
         return( 1 );
-    max_n = strtol( av[1], NULL, 10 );
+    min_n = strtol( av[1], NULL, 10 );
+    max_n = strtol( av[2], NULL, 10 );
 
     /*  探索範囲の数を調べる    */
-    for( n = 2; n <= max_n; n++ ) {
+    for( n = min_n; n <= max_n; n++ ) {
         /*  約数の総和を求める  */
         sum = 0;
         for( i = 1; i < n; i++ ) {

@@ -3,15 +3,16 @@
 
 int main( int ac, char *av[] )
 {
-    int a, b, c, aa, bb, cc, max_n;
+    int a, b, c, aa, bb, cc, min_n, max_n;
 
     /*  コマンドラインからピタゴラス探索範囲を決定する  */
-    if( ac < 2 )
+    if( ac < 3 )
         return( 1 );
-    max_n = strtol( av[1], NULL, 10 );
+    min_n = strtol( av[1], NULL, 10 );
+    max_n = strtol( av[2], NULL, 10 );
 
     /*  探索範囲の数を調べる    */
-    for( c = 1; c < max_n; c++ ) {
+    for( c = min_n; c < max_n; c++ ) {
         cc = c * c;
         for( b = 1; b < c; b++ ) {
             bb = b * b;

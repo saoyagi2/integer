@@ -8,15 +8,16 @@ int isprime( int n );
 
 int main( int ac, char *av[] )
 {
-    int n, max_n;
+    int n, min_n, max_n;
 
     /*  コマンドラインから素数探索範囲を決定する    */
-    if( ac < 2 )
+    if( ac < 3 )
         return( 1 );
-    max_n = strtol( av[1], NULL, 10 );
+    min_n = strtol( av[1], NULL, 10 );
+    max_n = strtol( av[2], NULL, 10 );
 
     /*  探索範囲の数を調べる    */
-    for( n = 1; n <= max_n; n++ ) {
+    for( n = min_n; n <= max_n; n++ ) {
         if( isprime( n ) )
             printf( "%d\n", n );
     }

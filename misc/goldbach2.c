@@ -12,12 +12,13 @@ int isprime( mpz_t n );
 
 int main( int ac, char *av[] )
 {
-    mpz_t n, max_n, m1, m2, tmp;
+    mpz_t n, min_n, max_n, m1, m2, tmp;
 
     /*  コマンドラインから探索範囲を決定する    */
-    if( ac < 2 )
+    if( ac < 3 )
         return( 1 );
-    mpz_init_set_str( max_n, av[1], 10 );
+    mpz_init_set_str( min_n, av[1], 10 );
+    mpz_init_set_str( max_n, av[2], 10 );
     mpz_init( n );
     mpz_init( m1 );
     mpz_init( m2 );
@@ -26,7 +27,7 @@ int main( int ac, char *av[] )
     initarray();
 
     /*  探索範囲の数を調べる    */
-    mpz_set_ui( n, 6 );
+    mpz_set( n, min_n );
     while( mpz_cmp( n, max_n ) <= 0 ) {
         /*  足してnになる整数組(m1,m2)が共に素数か調べる    */
         mpz_set_ui( m1, 3 );
