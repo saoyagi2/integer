@@ -23,9 +23,9 @@ int main( int ac, char *av[] )
     mpz_set( m, tmp );
 
     if( LucasLehmerTest( m, p ) )
-        gmp_printf( "%Zd OK\n", m );
+        printf( "OK\n" );
     else
-        gmp_printf( "%Zd NG\n", m );
+        printf( "NG\n" );
 
     mpz_clear( m );
     mpz_clear( tmp );

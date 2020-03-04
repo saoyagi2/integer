@@ -36,9 +36,9 @@ int main( int ac, char *av[] )
     mpz_set( f, tmp );
 
     if( isprime( f ) )
-        gmp_printf( "%Zd OK\n", f );
+        printf( "OK\n" );
     else
-        gmp_printf( "%Zd NG\n", f );
+        printf( "NG\n" );
 
     mpz_clear( f );
     mpz_clear( p );
