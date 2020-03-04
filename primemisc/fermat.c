@@ -7,33 +7,24 @@ int isprime( mpz_t n );
 int main( int ac, char *av[] )
 {
     int n;
-    mpz_t f, p, tmp, i;
+    mpz_t f, p, i;
 
     /*  コマンドラインから指数を決定する    */
     if( ac < 2 )
         return( 1 );
     n = strtol( av[1], NULL, 10 );
 
-    mpz_init( f );
-    mpz_init( p );
-    mpz_init( i );
-    mpz_init( tmp );
-
     /*  フェルマー数を求める    */
-    mpz_set_ui( p, 2 );
-    mpz_pow_ui( tmp, p, n );
-    mpz_set( p, tmp );
+    mpz_init_set_ui( p, 2 );
+    mpz_pow_ui( p, p, n );
 
-    mpz_set_ui( i, 1 );
-    mpz_set_ui( f, 2 );
+    mpz_init_set_ui( i, 1 );
+    mpz_init_set_ui( f, 2 );
     while( mpz_cmp( i, p ) < 0 ) {
-        mpz_mul_ui( tmp, f, 2 );
-        mpz_set( f, tmp );
-        mpz_add_ui( tmp, i, 1 );
-        mpz_set( i, tmp );
+        mpz_mul_ui( f, f, 2 );
+        mpz_add_ui( i, i, 1 );
     }
-    mpz_add_ui( tmp, f, 1 );
-    mpz_set( f, tmp );
+    mpz_add_ui( f, f, 1 );
 
     if( isprime( f ) )
         printf( "OK\n" );
@@ -43,7 +34,6 @@ int main( int ac, char *av[] )
     mpz_clear( f );
     mpz_clear( p );
     mpz_clear( i );
-    mpz_clear( tmp );
 
     return( 0 );
 }

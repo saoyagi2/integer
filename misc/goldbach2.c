@@ -12,46 +12,39 @@ int isprime( mpz_t n );
 
 int main( int ac, char *av[] )
 {
-    mpz_t n, min_n, max_n, m1, m2, tmp;
+    mpz_t n, min_n, max_n, m1, m2;
 
     /*  コマンドラインから探索範囲を決定する    */
     if( ac < 3 )
         return( 1 );
     mpz_init_set_str( min_n, av[1], 10 );
     mpz_init_set_str( max_n, av[2], 10 );
-    mpz_init( n );
-    mpz_init( m1 );
-    mpz_init( m2 );
-    mpz_init( tmp );
 
     initarray();
 
     /*  探索範囲の数を調べる    */
-    mpz_set( n, min_n );
+    mpz_init_set( n, min_n );
+    mpz_init( m2 );
     while( mpz_cmp( n, max_n ) <= 0 ) {
         /*  足してnになる整数組(m1,m2)が共に素数か調べる    */
-        mpz_set_ui( m1, 3 );
+        mpz_init_set_ui( m1, 3 );
         mpz_sub_ui( m2, n, 3 );
         while( mpz_cmp( m1, m2 ) <= 0 ) {
             if( isprime( m1 ) && isprime( m2 ) )
                 break;
-            mpz_add_ui( tmp, m1, 2 );
-            mpz_set( m1, tmp );
-            mpz_sub_ui( tmp, m2, 2 );
-            mpz_set( m2, tmp );
+            mpz_add_ui( m1, m1, 2 );
+            mpz_sub_ui( m2, m2, 2 );
         }
         if( mpz_cmp( m1, m2 ) > 0 )
             gmp_printf( "%Zd NG\n", n );
 
-        mpz_add_ui( tmp, n, 2 );
-        mpz_set( n, tmp );
+        mpz_add_ui( n, n, 2 );
     }
 
     mpz_clear( max_n );
     mpz_clear( n );
     mpz_clear( m1 );
     mpz_clear( m2 );
-    mpz_clear( tmp );
 
     return( 0 );
 }
