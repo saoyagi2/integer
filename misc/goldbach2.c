@@ -68,39 +68,45 @@ void initarray( void )
 
 int isprime( mpz_t n )
 {
-    mpz_t i, n2, tmp;
-    int _n, ret;
+    mpz_t i, n2;
+    int _n, d, ret;
 
     if( mpz_cmp_ui( n, MAX_ARRAY ) < 0 ) {
         _n = mpz_get_ui( n );
         return( array[_n] );
     }
 
-    /*  2割り切れたら合成数    */
-    if( mpz_even_p( n ) )
+    /*  1は素数ではない */
+    if( mpz_cmp_ui( n, 1 ) == 0 )
         return( 0 );
 
-    mpz_init( i );
-    mpz_init( n2 );
-    mpz_init( tmp );
+    /*  2,3は素数 */
+    if( mpz_cmp_ui( n, 2 ) == 0 || mpz_cmp_ui( n, 3 ) == 0 )
+        return( 1 );
+
+    /*  2,3で割り切れたら合成数    */
+    if( mpz_even_p( n ) || mpz_divisible_ui_p( n, 3 ) )
+        return( 0 );
 
     /*  sqrt(n)を求める */
+    mpz_init( n2 );
     mpz_sqrt( n2, n );
 
-    mpz_set_ui( i, MAX_ARRAY + 1 );
+    /*  n2以下の2,3の倍数以外での剰余が0かどうか調べる   */
+    d = 2;
+    mpz_init_set_ui( i, 5 );
     ret = 1;
-    while( mpz_cmp( i, n2 ) < 0 ) {
+    while( mpz_cmp( i, n2 ) <= 0 ) {
         if( mpz_divisible_p( n, i ) ) {
             ret = 0;
             break;
         }
-        mpz_add_ui( tmp, i, 2 );
-        mpz_set( i, tmp );
+        mpz_add_ui( i, i, d );
+        d = ( d == 2 ? 4 : 2 );
     }
 
     mpz_clear( i );
     mpz_clear( n2 );
-    mpz_clear( tmp );
 
     return( ret );
 }
