@@ -22,6 +22,7 @@
 
 素数にまつわる各種プログラムです。
 
+* emirp.c - エマープを求める
 * palindromicprime.c - 素数一覧から回文素数を探し出す
 * primedigit.c - 素数一覧から各素数の各桁を数える
 * twinprime.c - 素数一覧から双子素数を探し出す
