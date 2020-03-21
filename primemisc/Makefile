@@ -1,6 +1,6 @@
 CFLAGS	= -I/usr/local/include -L/usr/local/lib -O3 -Wall
 
-OUTS	= emirp palindromicprime primegen primedigit mersenne fermat twinprime twinprime2 brotherprime brotherprime2
+OUTS	= emirp palindromicprime palindromicprime2 primegen primedigit mersenne fermat twinprime twinprime2 brotherprime brotherprime2
 
 
 all:	$(OUTS)
@@ -10,6 +10,9 @@ emirp:	emirp.c
 
 palindromicprime:	palindromicprime.c
 	cc $(CFLAGS) -o palindromicprime palindromicprime.c
+
+palindromicprime2:	palindromicprime2.c
+	cc $(CFLAGS) -o palindromicprime2 palindromicprime2.c
 
 primegen:	primegen.c
 	cc $(CFLAGS) -o primegen -lgmp primegen.c
