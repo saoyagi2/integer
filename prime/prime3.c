@@ -3,13 +3,13 @@
 #include <limits.h>
 
 #define MAX_ARRAY   (100000000)
-#define START_R     (0x4000)
 
 char    array[MAX_ARRAY];
 int primelistcount;
 int *primelist;
 
 int initprimelist( void );
+int isqrt( int x );
 
 int main( int ac, char *av[] )
 {
@@ -62,17 +62,11 @@ int main( int ac, char *av[] )
 
 int initprimelist( void )
 {
-    int n, i, r;
+    int n, i;
     int sqrt_int_max;
 
     /* sqrt(INT_MAX/2)を求める */
-    r = START_R;
-    sqrt_int_max = 0;
-    while( r ) {
-        if( INT_MAX / 2 >= ( sqrt_int_max + r ) * ( sqrt_int_max + r ) )
-            sqrt_int_max += r;
-        r /= 2;
-    }
+    sqrt_int_max = isqrt( INT_MAX );
 
     /*  配列を初期化する    */
     for( i = 0; i <= sqrt_int_max; i++ )
@@ -102,4 +96,23 @@ int initprimelist( void )
     }
 
     return( 1 );
+}
+
+int isqrt( int x )
+{
+    int s, t;
+
+    if( x == 0 ) return 0;
+    s = 1;
+    t = x;
+    while( s < t ) {
+        s <<= 1;
+        t >>= 1;
+    }
+    do {
+        t = s;
+        s = ( x / s + s ) >> 1;
+    } while( s < t );
+
+    return( t );
 }

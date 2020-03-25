@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define START_R (0x4000)
-
 int isprime( int n );
+int isqrt( int x );
 
 int main( int ac, char *av[] )
 {
@@ -33,7 +32,7 @@ int main( int ac, char *av[] )
 
 int isprime( int n )
 {
-    int i, n2, r, d;
+    int i, n2, d;
 
     /*  1は素数ではない */
     if( n == 1 )
@@ -48,13 +47,7 @@ int isprime( int n )
         return( 0 );
 
     /*  sqrt(n)を求める */
-    r = START_R;
-    n2 = 0;
-    while( r ) {
-        if( n >= ( n2 + r ) * ( n2 + r ) )
-            n2 += r;
-        r /= 2;
-    }
+    n2 = isqrt( n );
 
     /*  n2以下の2,3の倍数以外での剰余が0かどうか調べる   */
     d = 2;
@@ -65,4 +58,23 @@ int isprime( int n )
 
     /*  素数であった    */
     return( 1 );
+}
+
+int isqrt( int x )
+{
+    int s, t;
+
+    if( x == 0 ) return 0;
+    s = 1;
+    t = x;
+    while( s < t ) {
+        s <<= 1;
+        t >>= 1;
+    }
+    do {
+        t = s;
+        s = ( x / s + s ) >> 1;
+    } while( s < t );
+
+    return( t );
 }

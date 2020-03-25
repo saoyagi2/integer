@@ -3,14 +3,15 @@
 #include <limits.h>
 
 #define MAX_ARRAY   (100000000)
-#define MAX_N (10000000000000)
-#define START_R (0x40000000)
+//#define MAX_N (10000000000000)
+#define MAX_N (10000)
 
 char    array[MAX_ARRAY];
 long long primelistcount;
 long long *primelist;
 
 int initprimelist( void );
+long long isqrt( long long x );
 
 int main( int ac, char *av[] )
 {
@@ -62,17 +63,11 @@ int main( int ac, char *av[] )
 /*  序数側の素数一覧を生成  */
 int initprimelist( void )
 {
-    long long n, i, r;
+    long long n, i;
     long long sqrt_llong_max;
 
     /* sqrt(MAX_N)を求める */
-    r = START_R;
-    sqrt_llong_max = 0;
-    while( r ) {
-        if( MAX_N >= ( sqrt_llong_max + r ) * ( sqrt_llong_max + r ) )
-            sqrt_llong_max += r;
-        r /= 2;
-    }
+    sqrt_llong_max = isqrt( MAX_N );
 
     /*  配列を初期化する    */
     for( i = 0; i <= sqrt_llong_max; i++ )
@@ -102,4 +97,23 @@ int initprimelist( void )
     }
 
     return( 1 );
+}
+
+long long isqrt( long long x )
+{
+    long long s, t;
+
+    if( x == 0 ) return 0;
+    s = 1;
+    t = x;
+    while( s < t ) {
+        s <<= 1;
+        t >>= 1;
+    }
+    do {
+        t = s;
+        s = ( x / s + s ) >> 1;
+    } while( s < t );
+
+    return( t );
 }
