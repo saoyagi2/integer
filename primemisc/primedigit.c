@@ -16,9 +16,9 @@ int main( int ac, char *av[] )
             types[i] = 0;
         _n = n;
         while( _n != 0 ) {
-		    types[_n % 10]++;
-		    _n /= 10;
-	    }
+            types[_n % 10]++;
+            _n /= 10;
+        }
         count = 0;
         for( i = 0; i < 10; i++ )
             if( types[i] != 0 )

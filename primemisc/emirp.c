@@ -18,21 +18,21 @@ int main( int ac, char *av[] )
 
     /*  探索範囲の数を調べる    */
     for( n = min_n; n <= max_n; n++ ) {
-	    /* nが素数でなかったら次へ */
+        /* nが素数でなかったら次へ */
         if( !isprime( n ) )
             continue;
         /*  逆から読んだ数字が素数か調べる    */
-		_n = n;
+        _n = n;
         n2 = 0;
         while( _n != -0 ) {
             n2 = n2 * 10 + _n % 10;
             _n /= 10;
         }
-		/* 元の数と同じ場合はエマープではない */
-		if( n == n2 )
-		    continue;
+        /* 元の数と同じ場合はエマープではない */
+        if( n == n2 )
+            continue;
         if( isprime( n2 ) )
-			printf( "%d\n", n );
+            printf( "%d\n", n );
     }
 
     return( 0 );
