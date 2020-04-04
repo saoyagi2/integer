@@ -48,6 +48,7 @@ isqrt() は「C言語による最新アルゴリズム事典(ISBN: 4-87408-414-1
 * perfect.c - 完全数を求める
 * perfectarray.c - 約数の和配列を用いて完全数を求める
 * multiplyperfect.c - 約数の和配列を用いて倍積完全数を求める
+* gmpperfectarray.c - perfectarray.cのGMP版
 
 ### yuuai
 
