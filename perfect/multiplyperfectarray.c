@@ -7,7 +7,7 @@ int array[ARRAY_SIZE];
 
 int main( int ac, char *av[] )
 {
-    int base, arraysize, m, n, min_n, max_n, i;
+    int base, arraysize, m, min_n, max_n, i, j;
 
     /*  コマンドラインからm及び探索範囲を決定する    */
     if( ac < 4 )
@@ -29,21 +29,21 @@ int main( int ac, char *av[] )
             array[i] = 0;
 
         /*    約数の和を求める    */
-        for( n = 1; n < ( base + arraysize ) / 2; n++ ) {
-            if( base <= n )
-                i = n * 2;
-            else if( base % n == 0 )
-                i = base;
+        for( i = 1; i < ( base + arraysize ) / 2; i++ ) {
+            if( base <= i )
+                j = i * 2;
+            else if( base % i == 0 )
+                j = base;
             else
-                i = ( base / n + 1 ) * n;
-            for( ; i < base + arraysize; i += n )
-                array[i - base] += n;
+                j = ( base / i + 1 ) * i;
+            for( ; j < base + arraysize; j += i )
+                array[j - base] += i;
         }
 
         /*    約数の和とその数自身のm倍が等しければ倍積完全数である    */
-        for( n = 0; n < arraysize; n++ ) {
-            if( array[n] == m * ( base + n ) )
-                printf( "%d\n", base + n );
+        for( i = 0; i < arraysize; i++ ) {
+            if( array[i] == m * ( base + i ) )
+                printf( "%d\n", base + i );
         }
     }
 

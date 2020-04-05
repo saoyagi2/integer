@@ -8,8 +8,8 @@ mpz_t array[ARRAY_SIZE];
 
 int main( int ac, char *av[] )
 {
-    int arraysize, i;
-    mpz_t base, n, min_n, max_n, to_n, tmp, mpz_i, to_i;
+    int arraysize, i, j;
+    mpz_t base, min_n, max_n, to_n, tmp, mpz_i, mpz_j, to_i, to_j;
 
     /*  コマンドラインから完全数探索範囲を決定する    */
     if( ac < 3 )
@@ -17,11 +17,12 @@ int main( int ac, char *av[] )
     mpz_init_set_str( min_n, av[1], 10 );
     mpz_init_set_str( max_n, av[2], 10 );
 
-    mpz_init( n );
     mpz_init( tmp );
-    mpz_init( to_i );
-    mpz_init( to_n );
     mpz_init( mpz_i );
+    mpz_init( mpz_j );
+    mpz_init( to_i );
+    mpz_init( to_j );
+    mpz_init( to_n );
 
     /*  ARRAY_SIZE分ごとの整数区間を調べる   */
     for( mpz_init_set( base, min_n ); mpz_cmp( base, max_n ) < 0; mpz_add_ui( base, base, ARRAY_SIZE ) ) {
@@ -40,25 +41,25 @@ int main( int ac, char *av[] )
 		}
 
         /*  約数の和を求める    */
-        mpz_add_ui( to_n, base, arraysize );
-        mpz_tdiv_q_ui( to_n, to_n, 2 );
-        for( mpz_set_ui( n, 1 ); mpz_cmp( n, to_n ) < 0; mpz_add_ui( n, n, 1 ) ) {
-            if( mpz_cmp( base, n ) <= 0 ) {
-                mpz_mul_ui( mpz_i, n, 2 );
+        mpz_add_ui( to_i, base, arraysize );
+        mpz_tdiv_q_ui( to_i, to_i, 2 );
+        for( mpz_set_ui( mpz_i, 1 ); mpz_cmp( mpz_i, to_i ) < 0; mpz_add_ui( mpz_i, mpz_i, 1 ) ) {
+            if( mpz_cmp( base, mpz_i ) <= 0 ) {
+                mpz_mul_ui( mpz_j, mpz_i, 2 );
             }
-            else if( mpz_mod( tmp, base, n ), mpz_cmp_ui( tmp, 0 ) == 0 ) {
-                mpz_set( mpz_i, base );
+            else if( mpz_mod( tmp, base, mpz_i ), mpz_cmp_ui( tmp, 0 ) == 0 ) {
+                mpz_set( mpz_j, base );
             }
             else {
-                mpz_tdiv_q( mpz_i, base, n );
-                mpz_add_ui( mpz_i, mpz_i, 1 );
-                mpz_mul( mpz_i, mpz_i, n );
+                mpz_tdiv_q( mpz_j, base, mpz_i );
+                mpz_add_ui( mpz_j, mpz_j, 1 );
+                mpz_mul( mpz_j, mpz_j, mpz_i );
             }
-            mpz_add_ui( to_i, base, arraysize );
-            for( ; mpz_cmp( mpz_i, to_i ) < 0; mpz_add( mpz_i, mpz_i, n ) ) {
-                mpz_sub( tmp, mpz_i, base );
-                i = mpz_get_ui( tmp );
-                mpz_add( array[i], array[i], n );
+            mpz_add_ui( to_j, base, arraysize );
+            for( ; mpz_cmp( mpz_j, to_j ) < 0; mpz_add( mpz_j, mpz_j, mpz_i ) ) {
+                mpz_sub( tmp, mpz_j, base );
+                j = mpz_get_ui( tmp );
+                mpz_add( array[j], array[j], mpz_i );
             }
         }
 
