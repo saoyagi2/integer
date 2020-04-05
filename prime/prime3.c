@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <limits.h>
 
-#define MAX_ARRAY   (100000000)
+#define ARRAY_SIZE   (100000000)
 
-char    array[MAX_ARRAY];
+char    array[ARRAY_SIZE];
 int primelistcount;
 int *primelist;
 
@@ -24,11 +24,11 @@ int main( int ac, char *av[] )
     if( !initprimelist() )
         return( 0 );
 
-    /*  MAX_ARRAY分ごとの整数区間をふるいにかける   */
-    for( base = min_n; base < max_n; base += MAX_ARRAY ) {
+    /*  ARRAY_SIZE分ごとの整数区間をふるいにかける   */
+    for( base = min_n; base < max_n; base += ARRAY_SIZE ) {
         /*  整数区間配列の大きさを決める    */
-        if( max_n - base + 1 > MAX_ARRAY )
-            arraysize = MAX_ARRAY;
+        if( max_n - base + 1 > ARRAY_SIZE )
+            arraysize = ARRAY_SIZE;
         else
             arraysize = max_n - base + 1;
 

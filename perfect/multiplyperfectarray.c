@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define    MAX_ARRAY    (100000000)
+#define    ARRAY_SIZE    (100000000)
 
-int array[MAX_ARRAY];
+int array[ARRAY_SIZE];
 
 int main( int ac, char *av[] )
 {
@@ -16,11 +16,11 @@ int main( int ac, char *av[] )
     min_n = strtol( av[2], NULL, 10 );
     max_n = strtol( av[3], NULL, 10 );
 
-    /*    MAX_ARRAY分ごとの整数区間を調べる    */
-    for( base = min_n; base < max_n; base += MAX_ARRAY ) {
+    /*    ARRAY_SIZE分ごとの整数区間を調べる    */
+    for( base = min_n; base < max_n; base += ARRAY_SIZE ) {
         /*    整数区間配列の大きさを決める    */
-        if( max_n - base + 1 > MAX_ARRAY )
-            arraysize = MAX_ARRAY;
+        if( max_n - base + 1 > ARRAY_SIZE )
+            arraysize = ARRAY_SIZE;
         else
             arraysize = max_n - base + 1;
 

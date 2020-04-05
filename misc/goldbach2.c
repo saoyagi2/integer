@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <gmp.h>
 
-#define MAX_ARRAY   (100000000)
-#define MAX_ARRAY_SQRT (10000)
+#define ARRAY_SIZE   (100000000)
+#define ARRAY_SIZE_SQRT (10000)
 
-char    array[MAX_ARRAY];
+char    array[ARRAY_SIZE];
 
 void initarray( void );
 int isprime( mpz_t n );
@@ -54,13 +54,13 @@ void initarray( void )
     int n, i;
 
     /*  配列を初期化する    */
-    for( i = 0; i < MAX_ARRAY; i++ )
+    for( i = 0; i < ARRAY_SIZE; i++ )
         array[i] = 1;
 
     /*  配列をふるいにかける    */
-    for( n = 2; n <= MAX_ARRAY_SQRT; n++ ) {
+    for( n = 2; n <= ARRAY_SIZE_SQRT; n++ ) {
         if( array[n] == 1 ) {
-            for( i = n * n; i < MAX_ARRAY; i += n )
+            for( i = n * n; i < ARRAY_SIZE; i += n )
                 array[i] = 0;
         }
     }
@@ -71,7 +71,7 @@ int isprime( mpz_t n )
     mpz_t i, n2;
     int _n, d, ret;
 
-    if( mpz_cmp_ui( n, MAX_ARRAY ) < 0 ) {
+    if( mpz_cmp_ui( n, ARRAY_SIZE ) < 0 ) {
         _n = mpz_get_ui( n );
         return( array[_n] );
     }
