@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-int countdigit( int n );
-
 int main( int ac, char *av[] )
 {
     int count, i, n, _n, types[10];
