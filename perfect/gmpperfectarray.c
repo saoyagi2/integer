@@ -38,7 +38,7 @@ int main( int ac, char *av[] )
         /*  配列を初期化する    */
         for( i = 0; i < arraysize; i++ ) {
             mpz_init_set_ui( array[i], 0 );
-		}
+        }
 
         /*  約数の和を求める    */
         mpz_add_ui( to_i, base, arraysize );
