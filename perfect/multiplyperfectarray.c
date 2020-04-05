@@ -7,14 +7,13 @@ int array[ARRAY_SIZE];
 
 int main( int ac, char *av[] )
 {
-    int base, arraysize, m, min_n, max_n, i, j;
+    int base, arraysize, min_n, max_n, i, j;
 
     /*  コマンドラインからm及び探索範囲を決定する    */
-    if( ac < 4 )
+    if( ac < 3 )
         return( 1 );
-    m = strtol( av[1], NULL, 10 );
-    min_n = strtol( av[2], NULL, 10 );
-    max_n = strtol( av[3], NULL, 10 );
+    min_n = strtol( av[1], NULL, 10 );
+    max_n = strtol( av[2], NULL, 10 );
 
     /*    ARRAY_SIZE分ごとの整数区間を調べる    */
     for( base = min_n; base < max_n; base += ARRAY_SIZE ) {
@@ -42,8 +41,8 @@ int main( int ac, char *av[] )
 
         /*    約数の和とその数自身のm倍が等しければ倍積完全数である    */
         for( i = 0; i < arraysize; i++ ) {
-            if( array[i] == m * ( base + i ) )
-                printf( "%d\n", base + i );
+            if( array[i] % ( base + i ) == 0 )
+                printf( "%d %d\n", array[i] / ( base + i ), base + i );
         }
     }
 
