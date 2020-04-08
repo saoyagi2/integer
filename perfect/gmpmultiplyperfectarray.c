@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <gmp.h>
 
-#define ARRAY_SIZE   (100000000)
+#define ARRAY_SIZE_MAX   (100000000)
 
-mpz_t array[ARRAY_SIZE];
+mpz_t array[ARRAY_SIZE_MAX];
 
 int main( int ac, char *av[] )
 {
@@ -25,17 +25,17 @@ int main( int ac, char *av[] )
     mpz_init( to_n );
     mpz_init( q );
     mpz_init( r );
-    for( i = 0; i < ARRAY_SIZE; i++ ) {
+    for( i = 0; i < ARRAY_SIZE_MAX; i++ ) {
         mpz_init( array[i] );
     }
 
-    /*  ARRAY_SIZE分ごとの整数区間を調べる   */
-    for( mpz_init_set( base, min_n ); mpz_cmp( base, max_n ) < 0; mpz_add_ui( base, base, ARRAY_SIZE ) ) {
+    /*  ARRAY_SIZE_MAX分ごとの整数区間を調べる   */
+    for( mpz_init_set( base, min_n ); mpz_cmp( base, max_n ) < 0; mpz_add_ui( base, base, ARRAY_SIZE_MAX ) ) {
         /*  整数区間配列の大きさを決める    */
         mpz_sub( tmp, max_n, base );
         mpz_add_ui( tmp, tmp, 1 );
-        if( mpz_cmp_ui( tmp, ARRAY_SIZE ) > 0 ) {
-            arraysize = ARRAY_SIZE;
+        if( mpz_cmp_ui( tmp, ARRAY_SIZE_MAX ) > 0 ) {
+            arraysize = ARRAY_SIZE_MAX;
         }
         else {
             arraysize = mpz_get_ui( tmp );
