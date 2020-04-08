@@ -41,7 +41,7 @@ int main( int ac, char *av[] )
 
         /*    約数の和とその数自身のm倍が等しければ倍積完全数である    */
         for( i = 0; i < arraysize; i++ ) {
-            if( array[i] % ( base + i ) == 0 )
+            if( array[i] != 0 && array[i] % ( base + i ) == 0 )
                 printf( "%d %d\n", array[i] / ( base + i ), base + i );
         }
     }

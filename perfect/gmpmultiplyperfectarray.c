@@ -72,7 +72,7 @@ int main( int ac, char *av[] )
         for( i = 0; i < arraysize; i++ ) {
             mpz_add_ui( tmp, base, i );
 			mpz_tdiv_qr( q, r, array[i], tmp );
-            if( mpz_cmp_ui( r, 0 ) == 0 )
+            if( mpz_cmp_ui( tmp, 0 ) != 0 && mpz_cmp_ui( r, 0 ) == 0 )
                 gmp_printf( "%Zd %Zd\n", q, tmp );
         }
     }
