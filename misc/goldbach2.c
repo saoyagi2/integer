@@ -24,10 +24,11 @@ int main( int ac, char *av[] )
 
     /*  探索範囲の数を調べる    */
     mpz_init_set( n, min_n );
+    mpz_init( m1 );
     mpz_init( m2 );
     while( mpz_cmp( n, max_n ) <= 0 ) {
         /*  足してnになる整数組(m1,m2)が共に素数か調べる    */
-        mpz_init_set_ui( m1, 3 );
+        mpz_set_ui( m1, 3 );
         mpz_sub_ui( m2, n, 3 );
         while( mpz_cmp( m1, m2 ) <= 0 ) {
             if( isprime( m1 ) && isprime( m2 ) )
