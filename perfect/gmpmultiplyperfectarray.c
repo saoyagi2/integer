@@ -71,7 +71,7 @@ int main( int ac, char *av[] )
         /*  約数の和とその数自身のm倍が等しければ倍積完全数である  */
         for( i = 0; i < arraysize; i++ ) {
             mpz_add_ui( tmp, base, i );
-			mpz_tdiv_qr( q, r, array[i], tmp );
+            mpz_tdiv_qr( q, r, array[i], tmp );
             if( mpz_cmp_ui( tmp, 0 ) != 0 && mpz_cmp_ui( r, 0 ) == 0 )
                 gmp_printf( "%Zd %Zd\n", q, tmp );
         }
