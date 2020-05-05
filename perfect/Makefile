@@ -5,6 +5,9 @@ OUTS	= perfect perfectarray gmpperfectarray multiplyperfectarray gmpmultiplyperf
 
 all:	$(OUTS)
 
+test:
+	@./test.sh
+
 perfect:	perfect.c
 	cc $(CFLAGS) -o perfect perfect.c
 

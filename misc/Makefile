@@ -5,6 +5,9 @@ OUTS	= collatz goldbach goldbach2 gmpgoldbach2 ogr ogr2 pythagoras
 
 all:	$(OUTS)
 
+test:
+	@./test.sh
+
 collatz:	collatz.c
 	cc $(CFLAGS) -o collatz collatz.c
 

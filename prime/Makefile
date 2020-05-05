@@ -5,6 +5,9 @@ OUTS	= prime1 prime2 prime3 prime10trillions gmpprime1
 
 all:	$(OUTS)
 
+test:
+	@./test.sh
+
 prime1:	prime1.c
 	cc $(CFLAGS) -o prime1 prime1.c
 

@@ -5,6 +5,9 @@ OUTS	= emirp palindromicprime palindromicprime2 primegen primedigit primedigit2 
 
 all:	$(OUTS)
 
+test:
+	@./test.sh
+
 emirp:	emirp.c
 	cc $(CFLAGS) -o emirp emirp.c
 
