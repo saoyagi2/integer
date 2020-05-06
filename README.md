@@ -64,7 +64,7 @@ isqrt() は「C言語による最新アルゴリズム事典(ISBN: 4-87408-414-1
 他に分類できないプログラム類です。
 
 * pythagoras.c - ピタゴラス数を求める
-* collatz.c - 子らっつ予想を検証する
+* collatz.c - コラッツ予想を検証する
 * goldbach.c - ゴールドバッハ予想を検証する
 * goldbach2.c - 素数配列を用いて高速にゴールドバッハ予想を検証する
 * gmpgoldbach2.c - goldbach2.cのGMP版
