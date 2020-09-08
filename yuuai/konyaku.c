@@ -21,7 +21,7 @@ int main( int ac, char *av[] )
     /*  約数の和が互いの数自身になれば婚約数である  */
     for( n = 1; n < ARRAY_SIZE_MAX; n++ ) {
         n2 = array[n];
-        if( array[n] < ARRAY_SIZE_MAX && n < n2 && array[n2] == n )
+        if( n2 < ARRAY_SIZE_MAX && n < n2 && array[n2] == n )
             printf( "%d %d\n", n, n2 );
     }
 
