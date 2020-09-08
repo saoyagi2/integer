@@ -1,28 +1,38 @@
 #include <stdio.h>
-
-#define ARRAY_SIZE_MAX   (100000000)
-
-int array[ARRAY_SIZE_MAX];
+#include <stdlib.h>
 
 int main( int ac, char *av[] )
 {
-    int n, n2, i;
+    int n, min_n, max_n;
+    int i, n2, n3;
 
-    /*  配列を初期化する    */
-    for( i = 0; i < ARRAY_SIZE_MAX; i++ )
-        array[i] = 0;
+    /*  コマンドラインから友愛数探索範囲を決定する    */
+    if( ac < 3 )
+        return( 1 );
+    min_n = strtol( av[1], NULL, 10 );
+    max_n = strtol( av[2], NULL, 10 );
 
-    /*  約数の和を求める    */
-    for( n = 1; n < ARRAY_SIZE_MAX / 2; n++ ) {
-        for( i = 2; i * n < ARRAY_SIZE_MAX; i++ )
-            array[i * n] += n;
-    }
+    /*  探索範囲の数を調べる    */
+    for( n = min_n; n <= max_n; n++ ) {
+        n2 = 0;
+        for( i = 1; i < n; i++ ) {
+            if( n % i == 0 ) {
+                n2 += i;
+            }
+        }
+        if( n2 <= n ) {
+            continue;
+        }
 
-    /*  約数の和が互いの数自身になれば友愛数である  */
-    for( n = 1; n < ARRAY_SIZE_MAX; n++ ) {
-        n2 = array[n];
-        if( n2 < ARRAY_SIZE_MAX && n < n2 && array[n2] == n )
+        n3 = 0;
+        for( i = 1; i < n2; i++ ) {
+            if( n2 % i == 0 ) {
+                n3 += i;
+            }
+        }
+        if( n3 == n ) {
             printf( "%d %d\n", n, n2 );
+        }
     }
 
     return( 0 );
