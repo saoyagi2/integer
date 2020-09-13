@@ -1,6 +1,6 @@
 CFLAGS	= -O3 -Wall
 
-OUTS	= konyaku konyaku2 syakou yuuai yuuai2
+OUTS	= konyaku konyaku2 syakou syakou2 yuuai yuuai2
 
 
 all:	$(OUTS)
@@ -16,6 +16,9 @@ konyaku2:	konyaku2.c
 
 syakou:	syakou.c
 	cc $(CFLAGS) -o syakou syakou.c
+
+syakou2:	syakou2.c
+	cc $(CFLAGS) -o syakou2 syakou2.c
 
 yuuai:	yuuai.c
 	cc $(CFLAGS) -o yuuai yuuai.c

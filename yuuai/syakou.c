@@ -1,30 +1,30 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-#define ARRAY_SIZE_MAX   (100000000)
 #define LIST_MAX   (100)
-
-int array[ARRAY_SIZE_MAX];
 
 int main( int ac, char *av[] )
 {
-    int n, n_list[LIST_MAX], i, j;
+    int n, min_n, max_n;
+    int n_list[LIST_MAX], i, j;
 
-    /*  配列を初期化する    */
-    for( i = 0; i < ARRAY_SIZE_MAX; i++ )
-        array[i] = 0;
+    /*  コマンドラインから社交数探索範囲を決定する    */
+    if( ac < 3 )
+        return( 1 );
+    min_n = strtol( av[1], NULL, 10 );
+    max_n = strtol( av[2], NULL, 10 );
 
-    /*  約数の和を求める    */
-    for( n = 1; n < ARRAY_SIZE_MAX / 2; n++ ) {
-        for( i = 2; i * n < ARRAY_SIZE_MAX; i++ )
-            array[i * n] += n;
-    }
-
-    /*  約数の和をたどって元の数に戻れば社交数である  */
-    for( n = 1; n < ARRAY_SIZE_MAX; n++ ) {
+    /*  探索範囲の数を調べる    */
+    for( n = min_n; n <= max_n; n++ ) {
         n_list[0] = n;
         for( i = 1; i < LIST_MAX; i++ ) {
-            n_list[i] = array[n_list[i - 1]];
-            if( n_list[i] >= ARRAY_SIZE_MAX || n_list[i] < n ) {
+            n_list[i] = 0;
+            for( j = 1; j < n_list[i - 1]; j++ ) {
+                if( n_list[i - 1] % j == 0 ) {
+                    n_list[i] += j;
+                }
+            }
+            if( n_list[i] < n ) {
                 break;
             }
             if( n_list[i] == n_list[0] ) {
