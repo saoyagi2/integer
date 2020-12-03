@@ -22,7 +22,6 @@ isqrt() は「C言語による最新アルゴリズム事典(ISBN: 4-87408-414-1
 ```
 $ cd prime
 $ make
-$ make
 cc -I/usr/local/include -L/usr/local/lib -O3 -Wall -lgmp -o prime1 prime1.c
 cc -I/usr/local/include -L/usr/local/lib -O3 -Wall -lgmp -o prime2 prime2.c
 cc -I/usr/local/include -L/usr/local/lib -O3 -Wall -lgmp -o prime3 prime3.c
@@ -34,7 +33,7 @@ cc -I/usr/local/include -L/usr/local/lib -O3 -Wall -lgmp -o gmpprime1 gmpprime1.
 
 例: prime1 の場合
 ```
-$ ./prime 2 10
+$ ./prime1 2 10
 2
 3
 5
