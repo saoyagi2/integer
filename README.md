@@ -12,6 +12,42 @@ isqrt() は「C言語による最新アルゴリズム事典(ISBN: 4-87408-414-1
 
 開発にはFreeBSD(amd64)を使用しています。一般的なC89環境で動作するように心がけています。
 
+一部のプログラムは多倍長整数を扱うために GMP を使用しています。コンパイルする環境に GMP を事前にインストールしてください。
+
+## 実行方法
+
+各ディレクトリに Makefile が用意してあり make コマンドによりビルドが行われます。FreeBSD 環境を想定しているため、それ以外の環境ではコンパイルオプションの調整が必要になる可能性があります。
+
+例: prime ディレクトリの場合
+```
+$ cd prime
+$ make
+$ make
+cc -I/usr/local/include -L/usr/local/lib -O3 -Wall -lgmp -o prime1 prime1.c
+cc -I/usr/local/include -L/usr/local/lib -O3 -Wall -lgmp -o prime2 prime2.c
+cc -I/usr/local/include -L/usr/local/lib -O3 -Wall -lgmp -o prime3 prime3.c
+cc -I/usr/local/include -L/usr/local/lib -O3 -Wall -lgmp  prime10trillions.c  -o prime10trillions
+cc -I/usr/local/include -L/usr/local/lib -O3 -Wall -lgmp -o gmpprime1 gmpprime1.c
+```
+
+各プログラムはコマンドラインから探索範囲パラメータを渡して実行することで計算を行います。一部、パラメータが無いプログラムもあります。必要なパラメータは各ソースコードを直接参照ください。
+
+例: prime1 の場合
+```
+$ ./prime 2 10
+2
+3
+5
+7
+```
+
+各プログラムには簡単なテストが用意してあります。`make test` とすることで各プログラムのテストを実行します。
+
+例： prime ディレクトリの場合
+```
+$ make test
+```
+
 ## 各プログラム説明
 
 ### prime
