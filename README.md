@@ -1,16 +1,16 @@
 # 初歩の整数論プログラミングソースコード
 
-[初歩の整数論プログラミング](http://www.saoyagi2.net/integer/)のソースコード一式です。詳しくはリンク先のサイトをご覧ください。
+[初歩の整数論プログラミング](http://www.saoyagi2.net/integer/) のソースコード一式です。詳しくはリンク先のサイトをご覧ください。
 
 ## ライセンス
 
-ライセンスはCC0です。ご自由にご利用ください。
+ライセンスは CC0 です。ご自由にご利用ください。
 
 isqrt() は「C言語による最新アルゴリズム事典(ISBN: 4-87408-414-1) p.256」を使用しております。
 
 ## 開発環境
 
-開発にはFreeBSD(amd64)を使用しています。一般的なC89環境で動作するように心がけています。
+開発には FreeBSD(amd64) を使用しています。一般的な C89 環境で動作するように心がけています。
 
 一部のプログラムは多倍長整数を扱うために GMP を使用しています。コンパイルする環境に GMP を事前にインストールしてください。
 
@@ -57,7 +57,7 @@ $ make test
 * prime1.c - 小さな数で割ってみて素数を求める
 * prime2.c - エラトステネスのふるいで素数を求める
 * prime3.c - エラトステネスのふるいを繰り返して使って素数を求める
-* gmpprime1.c - prim1.cのGMP対応版
+* gmpprime1.c - prim1.c の GMP 対応版
 * prime10trillions.c - 10兆以下の素数を求める
 
 ### primimisc
@@ -84,8 +84,8 @@ $ make test
 * perfect.c - 完全数を求める
 * perfectarray.c - 約数の和配列を用いて完全数を求める
 * multiplyperfectarray.c - 約数の和配列を用いて倍積完全数を求める
-* gmpperfectarray.c - perfectarray.cのGMP版
-* gmpmultiplyperfectarray.c - multiplyperfectarray.cのGMP版
+* gmpperfectarray.c - perfectarray.c の GMP 版
+* gmpmultiplyperfectarray.c - multiplyperfectarray.c の GMP 版
 
 ### yuuai
 
@@ -106,6 +106,6 @@ $ make test
 * collatz.c - コラッツ予想を検証する
 * goldbach.c - ゴールドバッハ予想を検証する
 * goldbach2.c - 素数配列を用いて高速にゴールドバッハ予想を検証する
-* gmpgoldbach2.c - goldbach2.cのGMP版
+* gmpgoldbach2.c - goldbach2.c の GMP 版
 * ogr.c - 総当たり法で最適ゴロム定規を求める
 * ogr2.c - バックトラック法で最適ゴロム定規を求める
