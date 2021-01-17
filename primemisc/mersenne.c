@@ -10,8 +10,10 @@ int main( int ac, char *av[] )
     mpz_t m;
 
     /*  コマンドラインから指数を決定する    */
-    if( ac < 2 )
+    if( ac < 2 ) {
+        printf( "usage : mersenne p\n" );
         return( 1 );
+    }
     p = strtol( av[1], NULL, 10 );
 
     /*  メルセンヌ数を求める    */

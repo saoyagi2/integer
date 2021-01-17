@@ -10,8 +10,10 @@ int main( int ac, char *av[] )
     mpz_t f, p, i;
 
     /*  コマンドラインから指数を決定する    */
-    if( ac < 2 )
+    if( ac < 2 ) {
+        printf( "usage : fermat n\n" );
         return( 1 );
+    }
     n = strtol( av[1], NULL, 10 );
 
     /*  フェルマー数を求める    */

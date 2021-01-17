@@ -7,8 +7,10 @@ int main( int ac, char *av[] )
     char buf[1024];
 
     /*  コマンドラインから差を決定する    */
-    if( ac < 2 )
+    if( ac < 2 ) {
+        printf( "usage : brotherprime d\n" );
         return( 1 );
+    }
     d = strtol( av[1], NULL, 10 );
 
     p = -1;

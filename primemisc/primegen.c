@@ -10,8 +10,10 @@ int main( int ac, char *av[] )
     mpz_t n, n2, max_n, tmp;
 
     /*  コマンドラインから係数と探索範囲を決定する    */
-    if( ac < 5 )
+    if( ac < 5 ) {
+        printf( "usage : primegen a b c max_n\n" );
         return( 1 );
+    }
     a = strtol( av[1], NULL, 10 );
     b = strtol( av[2], NULL, 10 );
     c = strtol( av[3], NULL, 10 );

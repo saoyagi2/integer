@@ -10,8 +10,10 @@ int main( int ac, char *av[] )
     int mark, mark_count, *ruler, length, found, nodes;
 
     /* コマンドラインからマーク数を決定する */
-    if( ac < 2 )
+    if( ac < 2 ) {
+        printf( "usage : ogr mark_count\n" );
         return( 1 );
+    }
     mark_count = strtol( av[1], NULL, 10 );
     if( mark_count < 2 )
         mark_count = 2;

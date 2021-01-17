@@ -9,8 +9,10 @@ int main( int ac, char *av[] )
     int n, _n, n2, min_n, max_n;
 
     /*  コマンドラインから探索範囲を決定する    */
-    if( ac < 3 )
+    if( ac < 3 ) {
+        printf( "usage : emirp min_n max_n\n" );
         return( 1 );
+    }
     min_n = strtol( av[1], NULL, 10 );
     min_n = min_n % 2 == 1 ? min_n + 1 : min_n;
     max_n = strtol( av[2], NULL, 10 );
