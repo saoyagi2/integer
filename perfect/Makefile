@@ -2,11 +2,10 @@ CFLAGS = -I/usr/local/include -L/usr/local/lib -O3 -Wall -lgmp
 
 OUTS	= perfect perfectarray gmpperfectarray multiplyperfectarray gmpmultiplyperfectarray
 
+.PHONY: all clean test
+
 
 all:	$(OUTS)
-
-test:
-	@./test.sh
 
 perfect:	perfect.c
 	cc $(CFLAGS) -o perfect perfect.c
@@ -22,6 +21,9 @@ multiplyperfectarray:	multiplyperfectarray.c
 
 gmpmultiplyperfectarray:	gmpmultiplyperfectarray.c
 	cc $(CFLAGS) -o gmpmultiplyperfectarray gmpmultiplyperfectarray.c
+
+test:
+	@./test.sh
 
 clean:
 	rm -f $(OUTS)

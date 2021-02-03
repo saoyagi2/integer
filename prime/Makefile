@@ -2,11 +2,10 @@ CFLAGS	= -I/usr/local/include -L/usr/local/lib -O3 -Wall -lgmp
 
 OUTS	= prime1 prime2 prime3 prime10trillions gmpprime1
 
+.PHONY: all clean test
+
 
 all:	$(OUTS)
-
-test:
-	@./test.sh
 
 prime1:	prime1.c
 	cc $(CFLAGS) -o prime1 prime1.c
@@ -22,6 +21,9 @@ prime10trillion:	prime10trillions.c
 
 gmpprime1:	gmpprime1.c
 	cc $(CFLAGS) -o gmpprime1 gmpprime1.c
+
+test:
+	@./test.sh
 
 clean:
 	rm -f $(OUTS)

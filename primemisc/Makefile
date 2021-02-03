@@ -2,11 +2,10 @@ CFLAGS	= -I/usr/local/include -L/usr/local/lib -O3 -Wall
 
 OUTS	= emirp palindromicprime palindromicprime2 primegen primedigit primedigit2 mersenne fermat twinprime twinprime2 brotherprime brotherprime2
 
+.PHONY: all clean test
+
 
 all:	$(OUTS)
-
-test:
-	@./test.sh
 
 emirp:	emirp.c
 	cc $(CFLAGS) -o emirp emirp.c
@@ -43,6 +42,9 @@ brotherprime:	brotherprime.c
 
 brotherprime2:	brotherprime2.c
 	cc $(CFLAGS) -o brotherprime2 brotherprime2.c
+
+test:
+	@./test.sh
 
 clean:
 	rm -f $(OUTS)

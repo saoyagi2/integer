@@ -2,11 +2,10 @@ CFLAGS	= -O3 -Wall
 
 OUTS	= konyaku konyaku2 syakou syakou2 yuuai yuuai2
 
+.PHONY: all clean test
+
 
 all:	$(OUTS)
-
-test:
-	@./test.sh
 
 konyaku:	konyaku.c
 	cc $(CFLAGS) -o konyaku konyaku.c
@@ -25,6 +24,9 @@ yuuai:	yuuai.c
 
 yuuai2:	yuuai2.c
 	cc $(CFLAGS) -o yuuai2 yuuai2.c
+
+test:
+	@./test.sh
 
 clean:
 	rm -f $(OUTS)
