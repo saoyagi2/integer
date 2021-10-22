@@ -3,7 +3,7 @@
 
 int main( int ac, char *av[] )
 {
-    mpz_t n, n2, min_n, max_n;
+    mpz_t n, n2, start_n, min_n, max_n;
 
     /*  コマンドラインから探索範囲を決定する    */
     if( ac < 3 ) {
@@ -11,23 +11,29 @@ int main( int ac, char *av[] )
         return( 1 );
     }
     mpz_init_set_str( min_n, av[1], 10 );
+    mpz_fdiv_q_ui(min_n, min_n, 4);
     mpz_init_set_str( max_n, av[2], 10 );
+    mpz_fdiv_q_ui(max_n, max_n, 4);
 
     /*  探索範囲の数を調べる    */
     mpz_init_set( n, min_n );
     while( mpz_cmp( n, max_n ) <= 0 ) {
         mpz_init_set( n2, n );
+        mpz_mul_ui( n2, n2, 4 );
+        mpz_add_ui( n2, n2, 3 );
+        mpz_init_set( start_n, n2 );
 
-        /*  n2が1になれば計算終了   */
-        while( mpz_cmp_ui( n2, 1 ) != 0 ) {
+        /*  n2がstart_n未満になれば計算終了   */
+        while( mpz_cmp( n2, start_n ) >= 0 ) {
             if( mpz_even_p( n2 ) ) {
                 /*  偶数なら2で割る */
                 mpz_div_ui( n2, n2, 2 );
             }
             else {
-                /*  奇数なら3を掛け1を加える    */
+                /*  奇数なら3を掛け1を加え、2で割る    */
                 mpz_mul_ui( n2, n2, 3 );
                 mpz_add_ui( n2, n2, 1 );
+                mpz_div_ui( n2, n2, 2 );
             }
         }
 

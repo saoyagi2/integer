@@ -105,6 +105,7 @@ $ make test
 
 * pythagoras.c - ピタゴラス数を求める
 * collatz.c - コラッツ予想を検証する
+* collatz2.c - 不要な計算を省いて高速にコラッツ予想を検証する
 * goldbach.c - ゴールドバッハ予想を検証する
 * goldbach2.c - 素数配列を用いて高速にゴールドバッハ予想を検証する
 * gmpgoldbach2.c - goldbach2.c の GMP 版
