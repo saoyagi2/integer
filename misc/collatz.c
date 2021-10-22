@@ -15,8 +15,9 @@ int main( int ac, char *av[] )
 
     /*  探索範囲の数を調べる    */
     mpz_init_set( n, min_n );
+    mpz_init( n2 );
     while( mpz_cmp( n, max_n ) <= 0 ) {
-        mpz_init_set( n2, n );
+        mpz_set( n2, n );
 
         /*  n2が1になれば計算終了   */
         while( mpz_cmp_ui( n2, 1 ) != 0 ) {

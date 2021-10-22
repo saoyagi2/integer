@@ -17,11 +17,13 @@ int main( int ac, char *av[] )
 
     /*  探索範囲の数を調べる    */
     mpz_init_set( n, min_n );
+    mpz_init( n2 );
+    mpz_init( start_n );
     while( mpz_cmp( n, max_n ) <= 0 ) {
-        mpz_init_set( n2, n );
+        mpz_set( n2, n );
         mpz_mul_ui( n2, n2, 4 );
         mpz_add_ui( n2, n2, 3 );
-        mpz_init_set( start_n, n2 );
+        mpz_set( start_n, n2 );
 
         /*  n2がstart_n未満になれば計算終了   */
         while( mpz_cmp( n2, start_n ) >= 0 ) {
