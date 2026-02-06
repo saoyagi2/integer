@@ -5,7 +5,7 @@ int set_ruler( int pos, int length, int mark_count, int *ruler );
 int check_ruler( int mark_count, int *ruler );
 void print_ruler( int mark_count, int *ruler );
 
-int nodes;
+long long nodes;
 int ogrlength[] = { 0, 1, 3, 6, 11, 17, 25, 34, 44, 55, 72, 85, 106, 127, 151, 177, 199, 216, 246, 283, 333, 356, 372, 425, 480, 492 };
 
 int main( int ac, char *av[] )
@@ -46,7 +46,7 @@ int main( int ac, char *av[] )
     }
 
     /* 計算回数を表示 */
-    printf( "%d nodes\n", nodes );
+    printf( "%lld nodes\n", nodes );
 
     return( 0 );
 }

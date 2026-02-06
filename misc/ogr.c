@@ -7,7 +7,8 @@ void print_ruler( int mark_count, int *ruler );
 
 int main( int ac, char *av[] )
 {
-    int mark, mark_count, *ruler, length, found, nodes;
+    int mark, mark_count, *ruler, length, found;
+    long long nodes;
 
     /* コマンドラインからマーク数を決定する */
     if( ac < 2 ) {
@@ -64,7 +65,7 @@ int main( int ac, char *av[] )
     }
 
     /* 計算回数を表示 */
-    printf( "%d nodes\n", nodes );
+    printf( "%lld nodes\n", nodes );
 
     return( 0 );
 }
