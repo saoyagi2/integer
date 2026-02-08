@@ -76,5 +76,15 @@ int main( int ac, char *av[] )
         }
     }
 
+    mpz_clear( base );
+    mpz_clear( min_n );
+    mpz_clear( max_n );
+    mpz_clear( to_n );
+    mpz_clear( tmp );
+    mpz_clear( mpz_i );
+    mpz_clear( mpz_j );
+    mpz_clear( to_i );
+    mpz_clear( to_j );
+
     return( 0 );
 }

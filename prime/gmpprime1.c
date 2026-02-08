@@ -25,6 +25,7 @@ int main( int ac, char *av[] )
     }
 
     mpz_clear( n );
+    mpz_clear( min_n );
     mpz_clear( max_n );
 
     return( 0 );

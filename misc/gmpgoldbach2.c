@@ -44,6 +44,7 @@ int main( int ac, char *av[] )
         mpz_add_ui( n, n, 2 );
     }
 
+    mpz_clear( min_n );
     mpz_clear( max_n );
     mpz_clear( n );
     mpz_clear( m1 );
