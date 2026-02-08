@@ -7,6 +7,11 @@ exectest "./emirp 2 100" "13 17 31 37 71 73 79 97"
 exectest "./emirp 900 1000" "907 937 941 953 967 971 983 991"
 exectest "./emirp 9900 10000" "9923 9931 9941 9967"
 
+exectest "./gmpemirp 2 10" ""
+exectest "./gmpemirp 2 100" "13 17 31 37 71 73 79 97"
+exectest "./gmpemirp 900 1000" "907 937 941 953 967 971 983 991"
+exectest "./gmpemirp 9900 10000" "9923 9931 9941 9967"
+
 exectest "echo -n | ./palindromicprime" ""
 exectest "(echo 2) | ./palindromicprime" "2"
 exectest "(echo 11; echo 13) | ./palindromicprime" "11"

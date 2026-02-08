@@ -6,6 +6,7 @@ prime/prime3
 prime/gmpprime1
 prime/prime10trillions
 primemisc/emirp
+primemisc/gmpemirp
 primemisc/palindromicprime
 primemisc/palindromicprime2
 primemisc/primedigit
