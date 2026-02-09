@@ -18,13 +18,15 @@ int main( int ac, char *av[] )
     mpz_init_set_str( max_n, av[2], 10 );
 
     /*  探索範囲の数を調べる    */
+    mpz_init( _n );
+    mpz_init( n2 );
     for( mpz_init_set( n, min_n ); mpz_cmp( n, max_n ) <= 0; mpz_add_ui( n, n, 1 ) ) {
         /* nが素数でなかったら次へ */
         if( !isprime( n ) )
             continue;
         /*  逆から読んだ数字が素数か調べる    */
-        mpz_init_set( _n, n );
-        mpz_init_set_ui( n2, 0 );
+        mpz_set( _n, n );
+        mpz_set_ui( n2, 0 );
         while( mpz_cmp_ui( _n, 0 ) != 0 ) {
             mpz_mul_ui( n2, n2, 10 );
             m = mpz_fdiv_q_ui( _n, _n, 10 );
