@@ -3,7 +3,7 @@
 
 int main( int ac, char *av[] )
 {
-    int n, p, d;
+    int i, n, *p, d;
     char buf[1024];
 
     /*  コマンドラインから差を決定する    */
@@ -13,12 +13,20 @@ int main( int ac, char *av[] )
     }
     d = strtol( av[1], NULL, 10 );
 
-    p = -1;
+    p = calloc( d, sizeof(int) );
+    if( p == NULL )
+      return( -1 );
+    for( i = 0; i < d; i++ )
+      p[i] = -1;
     while( fgets( buf, 1024, stdin ) ) {
         n = strtol( buf, NULL, 10 );
-        if( p != -1 && n - d == p )
-            printf( "%d %d\n", p, n );
-        p = n;
+        for( i = 0; i < d; i++ ) {
+          if( p[i] != -1 && n - d == p[i] )
+              printf( "%d %d\n", p[i], n );
+        }
+        for( i = 1; i < d; i++ )
+          p[i - 1] = p[i];
+        p[d - 1] = n;
     }
 
     return( 0 );
