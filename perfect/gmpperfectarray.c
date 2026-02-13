@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <gmp.h>
 
 #define ARRAY_SIZE_MAX   (100000000)
