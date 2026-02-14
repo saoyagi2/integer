@@ -64,15 +64,14 @@ int main( int ac, char *av[] )
 
 int initprimelist( int max_n )
 {
-    int n, i;
-    int sqrt_max_n;
+    int n, i, sqrt_max_n;
 
     /* sqrt(max_n)を求める */
     sqrt_max_n = isqrt( max_n );
 
     /*  配列を初期化する    */
-    for( i = 2; i <= sqrt_max_n; i++ )
-        array[i] = 1;
+    for( n = 2; n <= sqrt_max_n; n++ )
+        array[n] = 1;
 
     /*  配列をふるいにかける    */
     for( n = 2; n <= sqrt_max_n; n++ ) {

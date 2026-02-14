@@ -62,15 +62,14 @@ int main( int ac, char *av[] )
 /*  序数側の素数一覧を生成  */
 int initprimelist( void )
 {
-    long long n, i;
-    long long sqrt_max_n;
+    long long n, i, sqrt_max_n;
 
     /* sqrt(MAX_N)を求める */
     sqrt_max_n = isqrt( MAX_N );
 
     /*  配列を初期化する    */
-    for( i = 2; i <= sqrt_max_n; i++ )
-        array[i] = 1;
+    for( n = 2; n <= sqrt_max_n; n++ )
+        array[n] = 1;
 
     /*  配列をふるいにかける    */
     for( n = 2; n <= sqrt_max_n; n++ ) {
