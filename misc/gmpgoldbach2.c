@@ -79,8 +79,8 @@ int isprime( mpz_t n )
         return( array[_n] );
     }
 
-    /*  1は素数ではない */
-    if( mpz_cmp_ui( n, 1 ) == 0 )
+    /*  1以下は素数ではない */
+    if( mpz_cmp_si( n, 1 ) <= 0 )
         return( 0 );
 
     /*  2,3は素数 */

@@ -65,8 +65,8 @@ int isprime( int n )
         return( array[n] );
     }
 
-    /*  1は素数ではない */
-    if( n == 1 )
+    /*  1以下は素数ではない */
+    if( n <= 1 )
         return( 0 );
 
     /*  2,3は素数 */
