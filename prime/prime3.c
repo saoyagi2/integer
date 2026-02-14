@@ -67,7 +67,7 @@ int initprimelist( void )
     int n, i;
     int sqrt_int_max;
 
-    /* sqrt(INT_MAX/2)を求める */
+    /* sqrt(INT_MAX)を求める */
     sqrt_int_max = isqrt( INT_MAX );
 
     /*  配列を初期化する    */
