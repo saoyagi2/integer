@@ -69,7 +69,7 @@ int initprimelist( void )
     sqrt_llong_max = isqrt( MAX_N );
 
     /*  配列を初期化する    */
-    for( i = 0; i <= sqrt_llong_max; i++ )
+    for( i = 2; i <= sqrt_llong_max; i++ )
         array[i] = 1;
 
     /*  配列をふるいにかける    */
