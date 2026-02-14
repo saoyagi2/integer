@@ -1,7 +1,6 @@
 #include <stdio.h>
 
 #define ARRAY_SIZE   (100000000)
-#define ARRAY_SIZE_SQRT (10000)
 
 char    array[ARRAY_SIZE];
 
@@ -15,7 +14,7 @@ int main( void )
         array[i] = 1;
 
     /*  配列をふるいにかける    */
-    for( n = 2; n <= ARRAY_SIZE_SQRT; n++ ) {
+    for( n = 2; n * n <= ARRAY_SIZE; n++ ) {
         if( array[n] == 1 ) {
             for( i = n * n; i < ARRAY_SIZE; i += n )
                 array[i] = 0;
