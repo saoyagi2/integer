@@ -63,19 +63,19 @@ int main( int ac, char *av[] )
 int initprimelist( void )
 {
     long long n, i;
-    long long sqrt_llong_max;
+    long long sqrt_max_n;
 
     /* sqrt(MAX_N)を求める */
-    sqrt_llong_max = isqrt( MAX_N );
+    sqrt_max_n = isqrt( MAX_N );
 
     /*  配列を初期化する    */
-    for( i = 2; i <= sqrt_llong_max; i++ )
+    for( i = 2; i <= sqrt_max_n; i++ )
         array[i] = 1;
 
     /*  配列をふるいにかける    */
-    for( n = 2; n <= sqrt_llong_max; n++ ) {
+    for( n = 2; n <= sqrt_max_n; n++ ) {
         if( array[n] == 1 ) {
-            for( i = n * n; i <= sqrt_llong_max; i+=n ) {
+            for( i = n * n; i <= sqrt_max_n; i+=n ) {
                 array[i] = 0;
             }
         }
@@ -83,14 +83,14 @@ int initprimelist( void )
 
     /* 素数一覧配列にコピー */
     primelistcount = 0;
-    for( n = 2; n <= sqrt_llong_max; n++ ) {
+    for( n = 2; n <= sqrt_max_n; n++ ) {
         if( array[n] == 1 )
             primelistcount++;
     }
     primelist = calloc( primelistcount, sizeof(long long) );
     if( primelist == NULL )
         return( 0 );
-    for( n = 2, i = 0; n <= sqrt_llong_max; n++ ) {
+    for( n = 2, i = 0; n <= sqrt_max_n; n++ ) {
         if( array[n] == 1 )
             primelist[i++] = n;
     }
