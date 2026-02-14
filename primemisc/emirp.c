@@ -6,15 +6,15 @@ int isqrt( int x );
 
 int main( int ac, char *av[] )
 {
-    int n, _n, n2, min_n, max_n;
+    int n, n2, tmp, min_n, max_n;
 
     /*  コマンドラインから探索範囲を決定する    */
     if( ac < 3 ) {
         printf( "usage : emirp min_n max_n\n" );
         return( 1 );
     }
-    min_n = strtol( av[1], NULL, 10 );
-    max_n = strtol( av[2], NULL, 10 );
+    min_n = (int)strtol( av[1], NULL, 10 );
+    max_n = (int)strtol( av[2], NULL, 10 );
 
     /*  探索範囲の数を調べる    */
     for( n = min_n; n <= max_n; n++ ) {
@@ -22,11 +22,11 @@ int main( int ac, char *av[] )
         if( !isprime( n ) )
             continue;
         /*  逆から読んだ数字が素数か調べる    */
-        _n = n;
+        tmp = n;
         n2 = 0;
-        while( _n != -0 ) {
-            n2 = n2 * 10 + _n % 10;
-            _n /= 10;
+        while( tmp != 0 ) {
+            n2 = n2 * 10 + tmp % 10;
+            tmp /= 10;
         }
         /* 元の数と同じ場合はエマープではない */
         if( n == n2 )

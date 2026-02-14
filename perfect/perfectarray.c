@@ -14,8 +14,8 @@ int main( int ac, char *av[] )
         printf( "usage : perfectarray min_n max_n\n" );
         return( 1 );
     }
-    min_n = strtol( av[1], NULL, 10 );
-    max_n = strtol( av[2], NULL, 10 );
+    min_n = (int)strtol( av[1], NULL, 10 );
+    max_n = (int)strtol( av[2], NULL, 10 );
 
     /*  ARRAY_SIZE_MAX分ごとの整数区間を調べる   */
     for( base = min_n; base < max_n; base += ARRAY_SIZE_MAX ) {

@@ -10,8 +10,8 @@ int main( int ac, char *av[] )
         printf( "usage : pythagoras min_n max_n\n" );
         return( 1 );
     }
-    min_n = strtol( av[1], NULL, 10 );
-    max_n = strtol( av[2], NULL, 10 );
+    min_n = (int)strtol( av[1], NULL, 10 );
+    max_n = (int)strtol( av[2], NULL, 10 );
 
     /*  探索範囲の数を調べる    */
     for( c = min_n; c < max_n; c++ ) {

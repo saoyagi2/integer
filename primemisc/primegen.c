@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <gmp.h>
 
-int isprime( mpz_t n );
+int isprime( const mpz_t n );
 
 int main( int ac, char *av[] )
 {
@@ -14,9 +14,9 @@ int main( int ac, char *av[] )
         printf( "usage : primegen a b c max_n\n" );
         return( 1 );
     }
-    a = strtol( av[1], NULL, 10 );
-    b = strtol( av[2], NULL, 10 );
-    c = strtol( av[3], NULL, 10 );
+    a = (int)strtol( av[1], NULL, 10 );
+    b = (int)strtol( av[2], NULL, 10 );
+    c = (int)strtol( av[3], NULL, 10 );
     mpz_init_set_str( max_n, av[4], 10 );
 
     /*  探索範囲の数を調べる    */
@@ -48,7 +48,7 @@ int main( int ac, char *av[] )
     return( 0 );
 }
 
-int isprime( mpz_t n )
+int isprime( const mpz_t n )
 {
     mpz_t i, n2;
     int d, ret;

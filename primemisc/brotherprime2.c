@@ -19,7 +19,7 @@ int main( int ac, char *av[] )
     for( i = 0; i < d2; i++ )
       p[i] = 0;
     while( fgets( buf, 1024, stdin ) ) {
-        d = strtol( buf, NULL, 10 );
+        d = (int)strtol( buf, NULL, 10 );
         n = p[d2 - 1] + d;
         for( i = 1; i < d2; i++ ) {
           if( p[i] != 0 && n - d2 == p[i] )

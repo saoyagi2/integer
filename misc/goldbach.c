@@ -13,9 +13,9 @@ int main( int ac, char *av[] )
         printf( "usage : goldbach min_n max_n\n" );
         return( 1 );
     }
-    min_n = strtol( av[1], NULL, 10 );
+    min_n = (int)strtol( av[1], NULL, 10 );
     min_n = min_n % 2 == 1 ? min_n + 1 : min_n;
-    max_n = strtol( av[2], NULL, 10 );
+    max_n = (int)strtol( av[2], NULL, 10 );
     max_n = max_n % 2 == 1 ? max_n + 1 : max_n;
 
     /*  探索範囲の数を調べる    */

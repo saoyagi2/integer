@@ -9,8 +9,8 @@ int main( int ac, char *av[] )
     int n, n2, i;
 
     /*  配列を初期化する    */
-    for( i = 0; i < ARRAY_SIZE_MAX; i++ )
-        array[i] = 0;
+    for( n = 1; n < ARRAY_SIZE_MAX; n++ )
+        array[n] = 0;
 
     /*  約数の和を求める    */
     for( n = 1; n < ARRAY_SIZE_MAX / 2; n++ ) {

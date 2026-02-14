@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <gmp.h>
 
-#define ARRAY_SIZE   (100000000)
+#define SIEVE_SIZE   (100000000)
 
-char    array[ARRAY_SIZE];
+char    sieve[SIEVE_SIZE];
 
-void initarray( void );
-int isprime( mpz_t n );
+void initsieve( void );
+int isprime( const mpz_t n );
 
 int main( int ac, char *av[] )
 {
@@ -20,7 +20,7 @@ int main( int ac, char *av[] )
     mpz_init_set_str( min_n, av[1], 10 );
     mpz_init_set_str( max_n, av[2], 10 );
 
-    initarray();
+    initsieve();
 
     /*  探索範囲の数を調べる    */
     mpz_init_set( n, min_n );
@@ -51,32 +51,31 @@ int main( int ac, char *av[] )
     return( 0 );
 }
 
-void initarray( void )
+void initsieve( void )
 {
     int n, i;
 
-    /*  配列を初期化する    */
-    for( i = 0; i < ARRAY_SIZE; i++ )
-        array[i] = 1;
+    /*  ふるいを初期化する    */
+    for( n = 2; n < SIEVE_SIZE; n++ )
+        sieve[n] = 1;
 
-    /*  配列をふるいにかける    */
-    for( n = 2; n * n <= ARRAY_SIZE; n++ ) {
-        if( array[n] == 1 ) {
-            for( i = n * n; i < ARRAY_SIZE; i += n )
-                array[i] = 0;
+    /*  ふるいにかける    */
+    for( n = 2; n * n <= SIEVE_SIZE; n++ ) {
+        if( sieve[n] == 1 ) {
+            for( i = n * n; i < SIEVE_SIZE; i += n )
+                sieve[i] = 0;
         }
     }
 }
 
-int isprime( mpz_t n )
+int isprime( const mpz_t n )
 {
     mpz_t i, n2;
-    int _n, d, ret;
+    int d, ret;
 
-    if( mpz_cmp_ui( n, ARRAY_SIZE ) < 0 ) {
-        _n = mpz_get_ui( n );
-        return( array[_n] );
-    }
+    /*  ふるいの範囲内ならふるいを使用して素数判定  */
+    if( mpz_cmp_ui( n, SIEVE_SIZE ) < 0 )
+        return( sieve[mpz_get_ui( n )] );
 
     /*  1以下は素数ではない */
     if( mpz_cmp_si( n, 1 ) <= 0 )

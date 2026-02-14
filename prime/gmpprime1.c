@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <gmp.h>
 
-int isprime( mpz_t n );
+int isprime( const mpz_t n );
 
 int main( int ac, char *av[] )
 {
@@ -30,7 +30,7 @@ int main( int ac, char *av[] )
     return( 0 );
 }
 
-int isprime( mpz_t n )
+int isprime( const mpz_t n )
 {
     mpz_t i, n2;
     int d, ret;

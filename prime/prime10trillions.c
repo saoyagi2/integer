@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <limits.h>
 
-#define ARRAY_SIZE_MAX   (100000000)
+#define SIEVE_SIZE_MAX   (100000000)
 #define MAX_N (10000000000000)
 
-char    array[ARRAY_SIZE_MAX];
+char    sieve[SIEVE_SIZE_MAX];
 long long primelistcount;
 long long *primelist;
 
@@ -14,42 +14,43 @@ long long isqrt( long long x );
 
 int main( int ac, char *av[] )
 {
-    long long base, arraysize, n, i, j, prev;
+    long long base, sievesize, p, n, i, j, prev;
 
     /*  序数側の素数一覧を生成  */
     if( !initprimelist() )
         return( 0 );
 
     prev = 0;
-    /*  ARRAY_SIZE_MAX分ごとの整数区間をふるいにかける   */
-    for( base = 2; base < MAX_N; base += ARRAY_SIZE_MAX ) {
+    /*  SIEVE_SIZE_MAX分ごとの整数区間をふるいにかける   */
+    for( base = 2; base < MAX_N; base += SIEVE_SIZE_MAX ) {
         /*  整数区間配列の大きさを決める    */
-        if( MAX_N - base + 1 > ARRAY_SIZE_MAX )
-            arraysize = ARRAY_SIZE_MAX;
+        if( MAX_N - base + 1 > SIEVE_SIZE_MAX )
+            sievesize = SIEVE_SIZE_MAX;
         else
-            arraysize = MAX_N - base + 1;
+            sievesize = MAX_N - base + 1;
 
-        /*  配列を初期化する    */
-        for( i = 0; i < arraysize; i++ )
-            array[i] = 1;
+        /*  ふるいを初期化する    */
+        for( i = 0; i < sievesize; i++ )
+            sieve[i] = 1;
 
-        /*  配列をふるいにかける    */
+        /*  ふるいにかける    */
         for( i = 0; i < primelistcount; i++ ) {
-            n = primelist[i];
-            if( base <= n )
-                j = n;
-            else if( base % n == 0 )
+            p = primelist[i];
+            if( base <= p )
+                j = p;
+            else if( base % p == 0 )
                 j = base;
             else
-                j = ( base / n + 1 ) * n;
-            j = j < n * n ? n * n : j;
-            for( ; j < base + arraysize; j += n )
-                array[j - base] = 0;
+                j = ( base / p + 1 ) * p;
+            j = j < p * p ? p * p : j;
+            for( ; j < base + sievesize; j += p )
+                sieve[j - base] = 0;
         }
 
         /*  ふるいで残った数は素数である    */
-        for( n = 0; n < arraysize; n++ ) {
-            if( array[n] == 1 ) {
+        for( n = 0; n < sievesize; n++ ) {
+            if( sieve[n] == 1 ) {
+                /*  前の素数との差分で出力  */
                 printf( "%lld\n", base + n - prev );
                 prev = base + n;
             }
@@ -62,21 +63,20 @@ int main( int ac, char *av[] )
 /*  序数側の素数一覧を生成  */
 int initprimelist( void )
 {
-    long long n, i;
-    long long sqrt_max_n;
+    long long n, i, sqrt_max_n;
 
     /* sqrt(MAX_N)を求める */
     sqrt_max_n = isqrt( MAX_N );
 
-    /*  配列を初期化する    */
-    for( i = 2; i <= sqrt_max_n; i++ )
-        array[i] = 1;
+    /*  ふるいを初期化する    */
+    for( n = 2; n <= sqrt_max_n; n++ )
+        sieve[n] = 1;
 
-    /*  配列をふるいにかける    */
+    /*  ふるいにかける    */
     for( n = 2; n <= sqrt_max_n; n++ ) {
-        if( array[n] == 1 ) {
+        if( sieve[n] == 1 ) {
             for( i = n * n; i <= sqrt_max_n; i+=n ) {
-                array[i] = 0;
+                sieve[i] = 0;
             }
         }
     }
@@ -84,14 +84,14 @@ int initprimelist( void )
     /* 素数一覧配列にコピー */
     primelistcount = 0;
     for( n = 2; n <= sqrt_max_n; n++ ) {
-        if( array[n] == 1 )
+        if( sieve[n] == 1 )
             primelistcount++;
     }
     primelist = calloc( primelistcount, sizeof(long long) );
     if( primelist == NULL )
         return( 0 );
     for( n = 2, i = 0; n <= sqrt_max_n; n++ ) {
-        if( array[n] == 1 )
+        if( sieve[n] == 1 )
             primelist[i++] = n;
     }
 

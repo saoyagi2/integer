@@ -4,18 +4,18 @@
 
 int main( int ac, char *av[] )
 {
-    int count, i, n, _n, types[10];
+    int count, i, n, tmp, types[10];
     char buf[1024];
 
     while( fgets( buf, 1024, stdin ) ) {
-        n = strtol( buf, NULL, 10 );
+        n = (int)strtol( buf, NULL, 10 );
 
         for( i = 0; i < 10; i++ )
             types[i] = 0;
-        _n = n;
-        while( _n != 0 ) {
-            types[_n % 10]++;
-            _n /= 10;
+        tmp = n;
+        while( tmp != 0 ) {
+            types[tmp % 10]++;
+            tmp /= 10;
         }
         count = 0;
         for( i = 0; i < 10; i++ )

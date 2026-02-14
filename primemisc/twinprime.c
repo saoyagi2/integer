@@ -8,7 +8,7 @@ int main( int ac, char *av[] )
 
     p = -1;
     while( fgets( buf, 1024, stdin ) ) {
-        n = strtol( buf, NULL, 10 );
+        n = (int)strtol( buf, NULL, 10 );
         if( p != -1 && n - 2 == p )
             printf( "%d %d\n", p, n );
         p = n;

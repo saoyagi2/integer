@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define ARRAY_SIZE   (100000000)
+#define SIEVE_SIZE   (100000000)
 
-char    array[ARRAY_SIZE];
+char    sieve[SIEVE_SIZE];
 
-void initarray( void );
+void initsieve( void );
 int isprime( int n );
 int isqrt( int x );
 
@@ -18,12 +18,12 @@ int main( int ac, char *av[] )
         printf( "usage : goldbach2 min_n max_n\n" );
         return( 1 );
     }
-    min_n = strtol( av[1], NULL, 10 );
+    min_n = (int)strtol( av[1], NULL, 10 );
     min_n = min_n % 2 == 1 ? min_n + 1 : min_n;
-    max_n = strtol( av[2], NULL, 10 );
+    max_n = (int)strtol( av[2], NULL, 10 );
     max_n = max_n % 2 == 1 ? max_n + 1 : max_n;
 
-    initarray();
+    initsieve();
 
     /*  探索範囲の数を調べる    */
     for( n = min_n; n <= max_n; n += 2 ) {
@@ -39,19 +39,19 @@ int main( int ac, char *av[] )
     return( 0 );
 }
 
-void initarray( void )
+void initsieve( void )
 {
     int n, i;
 
-    /*  配列を初期化する    */
-    for( i = 0; i < ARRAY_SIZE; i++ )
-        array[i] = 1;
+    /*  ふるいを初期化する    */
+    for( n = 2; n < SIEVE_SIZE; n++ )
+        sieve[n] = 1;
 
-    /*  配列をふるいにかける    */
-    for( n = 2; n * n <= ARRAY_SIZE; n++ ) {
-        if( array[n] == 1 ) {
-            for( i = n * n; i < ARRAY_SIZE; i += n )
-                array[i] = 0;
+    /*  ふるいにかける    */
+    for( n = 2; n * n <= SIEVE_SIZE; n++ ) {
+        if( sieve[n] == 1 ) {
+            for( i = n * n; i < SIEVE_SIZE; i += n )
+                sieve[i] = 0;
         }
     }
 }
@@ -60,9 +60,9 @@ int isprime( int n )
 {
     int i, n2, d;
 
-    if( n < ARRAY_SIZE ) {
-        return( array[n] );
-    }
+    /*  ふるいの範囲内ならふるいを使用して素数判定  */
+    if( n < SIEVE_SIZE )
+        return( sieve[n] );
 
     /*  1以下は素数ではない */
     if( n <= 1 )

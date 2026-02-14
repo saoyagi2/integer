@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <gmp.h>
 
-int LucasLehmerTest( mpz_t n, int p );
+int LucasLehmerTest( const mpz_t n, int p );
 
 int main( int ac, char *av[] )
 {
@@ -14,7 +14,7 @@ int main( int ac, char *av[] )
         printf( "usage : mersenne p\n" );
         return( 1 );
     }
-    p = strtol( av[1], NULL, 10 );
+    p = (int)strtol( av[1], NULL, 10 );
 
     /*  メルセンヌ数を求める    */
     mpz_init_set_ui( m, 2 );
@@ -31,7 +31,7 @@ int main( int ac, char *av[] )
     return( 0 );
 }
 
-int LucasLehmerTest( mpz_t m, int p )
+int LucasLehmerTest( const mpz_t m, int p )
 {
     int i, ret;
     mpz_t s;

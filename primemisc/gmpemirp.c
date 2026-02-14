@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <gmp.h>
 
-int isprime( mpz_t n );
+int isprime( const mpz_t n );
 
 int main( int ac, char *av[] )
 {
     int m;
-    mpz_t n, _n, n2, min_n, max_n;
+    mpz_t n, n2, tmp, min_n, max_n;
 
     /*  コマンドラインから探索範囲を決定する    */
     if( ac < 3 ) {
@@ -17,18 +17,18 @@ int main( int ac, char *av[] )
     mpz_init_set_str( max_n, av[2], 10 );
 
     /*  探索範囲の数を調べる    */
-    mpz_init( _n );
+    mpz_init( tmp );
     mpz_init( n2 );
     for( mpz_init_set( n, min_n ); mpz_cmp( n, max_n ) <= 0; mpz_add_ui( n, n, 1 ) ) {
         /* nが素数でなかったら次へ */
         if( !isprime( n ) )
             continue;
         /*  逆から読んだ数字が素数か調べる    */
-        mpz_set( _n, n );
+        mpz_set( tmp, n );
         mpz_set_ui( n2, 0 );
-        while( mpz_cmp_ui( _n, 0 ) != 0 ) {
+        while( mpz_cmp_ui( tmp, 0 ) != 0 ) {
             mpz_mul_ui( n2, n2, 10 );
-            m = mpz_fdiv_q_ui( _n, _n, 10 );
+            m = mpz_fdiv_q_ui( tmp, tmp, 10 );
             mpz_add_ui( n2, n2, m );
         }
         /* 元の数と同じ場合はエマープではない */
@@ -39,15 +39,15 @@ int main( int ac, char *av[] )
     }
 
     mpz_clear( n );
-    mpz_clear( _n );
     mpz_clear( n2 );
+    mpz_clear( tmp );
     mpz_clear( min_n );
     mpz_clear( max_n );
 
     return( 0 );
 }
 
-int isprime( mpz_t n )
+int isprime( const mpz_t n )
 {
     mpz_t i, n2;
     int d, ret;

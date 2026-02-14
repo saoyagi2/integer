@@ -5,7 +5,7 @@
 int main( int ac, char *av[] )
 {
     int count, i, types[10];
-    long long d, n, _n, p;
+    long long d, n, tmp, p;
     char buf[1024];
 
     p = 0;
@@ -15,10 +15,10 @@ int main( int ac, char *av[] )
 
         for( i = 0; i < 10; i++ )
             types[i] = 0;
-        _n = n;
-        while( _n != 0 ) {
-            types[_n % 10]++;
-            _n /= 10;
+        tmp = n;
+        while( tmp != 0 ) {
+            types[tmp % 10]++;
+            tmp /= 10;
         }
         count = 0;
         for( i = 0; i < 10; i++ )

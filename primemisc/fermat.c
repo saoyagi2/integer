@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <gmp.h>
 
-int isprime( mpz_t n );
+int isprime( const mpz_t n );
 
 int main( int ac, char *av[] )
 {
@@ -14,7 +14,7 @@ int main( int ac, char *av[] )
         printf( "usage : fermat n\n" );
         return( 1 );
     }
-    n = strtol( av[1], NULL, 10 );
+    n = (int)strtol( av[1], NULL, 10 );
 
     /*  フェルマー数を求める    */
     mpz_init_set_ui( p, 2 );
@@ -40,7 +40,7 @@ int main( int ac, char *av[] )
     return( 0 );
 }
 
-int isprime( mpz_t n )
+int isprime( const mpz_t n )
 {
     mpz_t i, n2;
     int d, ret;
