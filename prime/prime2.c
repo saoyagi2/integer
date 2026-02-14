@@ -11,7 +11,7 @@ int main( void )
     int n, i;
 
     /*  配列を初期化する    */
-    for( i = 0; i < ARRAY_SIZE; i++ )
+    for( i = 2; i < ARRAY_SIZE; i++ )
         array[i] = 1;
 
     /*  配列をふるいにかける    */
