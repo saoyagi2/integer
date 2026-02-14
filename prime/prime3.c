@@ -8,7 +8,7 @@ char    array[ARRAY_SIZE_MAX];
 int primelistcount;
 int *primelist;
 
-int initprimelist( void );
+int initprimelist( int max_n );
 int isqrt( int x );
 
 int main( int ac, char *av[] )
@@ -23,7 +23,7 @@ int main( int ac, char *av[] )
     min_n = strtol( av[1], NULL, 10 );
     max_n = strtol( av[2], NULL, 10 );
 
-    if( !initprimelist() )
+    if( !initprimelist( max_n ) )
         return( 0 );
 
     /*  ARRAY_SIZE_MAX分ごとの整数区間をふるいにかける   */
@@ -62,22 +62,22 @@ int main( int ac, char *av[] )
     return( 0 );
 }
 
-int initprimelist( void )
+int initprimelist( int max_n )
 {
     int n, i;
-    int sqrt_int_max;
+    int sqrt_max_n;
 
-    /* sqrt(INT_MAX)を求める */
-    sqrt_int_max = isqrt( INT_MAX );
+    /* sqrt(max_n)を求める */
+    sqrt_max_n = isqrt( max_n );
 
     /*  配列を初期化する    */
-    for( i = 2; i <= sqrt_int_max; i++ )
+    for( i = 2; i <= sqrt_max_n; i++ )
         array[i] = 1;
 
     /*  配列をふるいにかける    */
-    for( n = 2; n <= sqrt_int_max; n++ ) {
+    for( n = 2; n <= sqrt_max_n; n++ ) {
         if( array[n] == 1 ) {
-            for( i = n * n; i <= sqrt_int_max; i+=n ) {
+            for( i = n * n; i <= sqrt_max_n; i+=n ) {
                 array[i] = 0;
             }
         }
@@ -85,14 +85,14 @@ int initprimelist( void )
 
     /* 素数一覧配列にコピー */
     primelistcount = 0;
-    for( n = 2; n <= sqrt_int_max; n++ ) {
+    for( n = 2; n <= sqrt_max_n; n++ ) {
         if( array[n] == 1 )
             primelistcount++;
     }
     primelist = calloc( primelistcount, sizeof(int) );
     if( primelist == NULL )
         return( 0 );
-    for( n = 2, i = 0; n <= sqrt_int_max; n++ ) {
+    for( n = 2, i = 0; n <= sqrt_max_n; n++ ) {
         if( array[n] == 1 )
             primelist[i++] = n;
     }
