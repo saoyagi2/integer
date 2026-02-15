@@ -73,17 +73,13 @@ int isprime( const mpz_t n )
     mpz_t i, n2;
     int d, ret;
 
-    /*  ふるいの範囲内ならふるいを使用して素数判定  */
-    if( mpz_cmp_ui( n, SIEVE_SIZE ) < 0 )
-        return( sieve[mpz_get_ui( n )] );
-
     /*  1以下は素数ではない */
     if( mpz_cmp_si( n, 1 ) <= 0 )
         return( 0 );
 
-    /*  2,3は素数 */
-    if( mpz_cmp_ui( n, 2 ) == 0 || mpz_cmp_ui( n, 3 ) == 0 )
-        return( 1 );
+    /*  ふるいの範囲内ならふるいを使用して素数判定  */
+    if( mpz_cmp_ui( n, SIEVE_SIZE ) < 0 )
+        return( sieve[mpz_get_ui( n )] );
 
     /*  2,3で割り切れたら合成数    */
     if( mpz_even_p( n ) || mpz_divisible_ui_p( n, 3 ) )

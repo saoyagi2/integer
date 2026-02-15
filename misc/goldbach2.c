@@ -60,17 +60,13 @@ int isprime( int n )
 {
     int i, n2, d;
 
-    /*  ふるいの範囲内ならふるいを使用して素数判定  */
-    if( n < SIEVE_SIZE )
-        return( sieve[n] );
-
     /*  1以下は素数ではない */
     if( n <= 1 )
         return( 0 );
 
-    /*  2,3は素数 */
-    if( n == 2 || n == 3 )
-        return( 1 );
+    /*  ふるいの範囲内ならふるいを使用して素数判定  */
+    if( n < SIEVE_SIZE )
+        return( sieve[n] );
 
     /*  2,3で割り切れたら合成数    */
     if( n % 2 == 0 || n % 3 == 0 )
