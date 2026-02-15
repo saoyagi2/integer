@@ -2,7 +2,6 @@
 #include <stdlib.h>
 
 int isprime( int n );
-int isqrt( int x );
 
 int main( int ac, char *av[] )
 {
@@ -27,7 +26,7 @@ int main( int ac, char *av[] )
 
 int isprime( int n )
 {
-    int i, n2, d;
+    int i, d;
 
     /*  1以下は素数ではない */
     if( n <= 1 )
@@ -41,35 +40,13 @@ int isprime( int n )
     if( n % 2 == 0 || n % 3 == 0 )
         return( 0 );
 
-    /*  sqrt(n)を求める */
-    n2 = isqrt( n );
-
-    /*  n2以下の2,3の倍数以外での剰余が0かどうか調べる   */
+    /*  自乗がn以下の2,3の倍数以外での剰余が0かどうか調べる   */
     d = 2;
-    for( i = 5; i <= n2; i += d, d = ( d == 2 ? 4 : 2 ) ) {
+    for( i = 5; i * i <= n; i += d, d = ( d == 2 ? 4 : 2 ) ) {
         if( n % i == 0 )
             return( 0 );
     }
 
     /*  素数であった    */
     return( 1 );
-}
-
-int isqrt( int x )
-{
-    int s, t;
-
-    if( x == 0 ) return 0;
-    s = 1;
-    t = x;
-    while( s < t ) {
-        s <<= 1;
-        t >>= 1;
-    }
-    do {
-        t = s;
-        s = ( x / s + s ) >> 1;
-    } while( s < t );
-
-    return( t );
 }

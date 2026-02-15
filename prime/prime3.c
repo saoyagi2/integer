@@ -9,7 +9,6 @@ int primelistcount;
 int *primelist;
 
 int initprimelist( int max_n );
-int isqrt( int x );
 
 int main( int ac, char *av[] )
 {
@@ -68,19 +67,16 @@ int main( int ac, char *av[] )
 /*  序数側の素数一覧を生成  */
 int initprimelist( int max_n )
 {
-    int n, i, sqrt_max_n;
-
-    /* sqrt(max_n)を求める */
-    sqrt_max_n = isqrt( max_n );
+    int n, i;
 
     /*  ふるいを初期化する    */
-    for( n = 2; n <= sqrt_max_n; n++ )
+    for( n = 2; n * n <= max_n; n++ )
         sieve[n] = 1;
 
     /*  ふるいにかける    */
-    for( n = 2; n <= sqrt_max_n; n++ ) {
+    for( n = 2; n * n <= max_n; n++ ) {
         if( sieve[n] == 1 ) {
-            for( i = n * n; i <= sqrt_max_n; i+=n ) {
+            for( i = n * n; i * i <= max_n; i+=n ) {
                 sieve[i] = 0;
             }
         }
@@ -88,36 +84,17 @@ int initprimelist( int max_n )
 
     /* 素数一覧配列にコピー */
     primelistcount = 0;
-    for( n = 2; n <= sqrt_max_n; n++ ) {
+    for( n = 2; n * n <= max_n; n++ ) {
         if( sieve[n] == 1 )
             primelistcount++;
     }
     primelist = calloc( primelistcount, sizeof(int) );
     if( primelist == NULL )
         return( 0 );
-    for( n = 2, i = 0; n <= sqrt_max_n; n++ ) {
+    for( n = 2, i = 0; n * n <= max_n; n++ ) {
         if( sieve[n] == 1 )
             primelist[i++] = n;
     }
 
     return( 1 );
-}
-
-int isqrt( int x )
-{
-    int s, t;
-
-    if( x == 0 ) return 0;
-    s = 1;
-    t = x;
-    while( s < t ) {
-        s <<= 1;
-        t >>= 1;
-    }
-    do {
-        t = s;
-        s = ( x / s + s ) >> 1;
-    } while( s < t );
-
-    return( t );
 }

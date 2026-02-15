@@ -70,7 +70,7 @@ void initsieve( void )
 
 int isprime( const mpz_t n )
 {
-    mpz_t i, n2;
+    mpz_t i, tmp;
     int d, ret;
 
     /*  1以下は素数ではない */
@@ -85,15 +85,16 @@ int isprime( const mpz_t n )
     if( mpz_even_p( n ) || mpz_divisible_ui_p( n, 3 ) )
         return( 0 );
 
-    /*  sqrt(n)を求める */
-    mpz_init( n2 );
-    mpz_sqrt( n2, n );
-
     /*  n2以下の2,3の倍数以外での剰余が0かどうか調べる   */
     d = 2;
     mpz_init_set_ui( i, 5 );
+    mpz_init( tmp );
     ret = 1;
-    while( mpz_cmp( i, n2 ) <= 0 ) {
+    while( 1 ) {
+        mpz_mul( tmp, i, i );
+        if( mpz_cmp( tmp, n ) > 0 )
+            break;
+
         if( mpz_divisible_p( n, i ) ) {
             ret = 0;
             break;
@@ -103,7 +104,7 @@ int isprime( const mpz_t n )
     }
 
     mpz_clear( i );
-    mpz_clear( n2 );
+    mpz_clear( tmp );
 
     return( ret );
 }
