@@ -26,9 +26,8 @@ int main( int ac, char *av[] )
     mpz_init( to_n );
     mpz_init( q );
     mpz_init( r );
-    for( i = 0; i < ARRAY_SIZE_MAX; i++ ) {
+    for( i = 0; i < ARRAY_SIZE_MAX; i++ )
         mpz_init( array[i] );
-    }
 
     /*  ARRAY_SIZE_MAX分ごとの整数区間を調べる   */
     for( mpz_init_set( base, min_n ); mpz_cmp( base, max_n ) < 0; mpz_add_ui( base, base, ARRAY_SIZE_MAX ) ) {
@@ -41,10 +40,10 @@ int main( int ac, char *av[] )
         else {
             arraysize = mpz_get_ui( tmp );
         }
+
         /*  配列を初期化する    */
-        for( i = 0; i < arraysize; i++ ) {
+        for( i = 0; i < arraysize; i++ )
             mpz_set_ui( array[i], 0 );
-        }
 
         /*  約数の和を求める    */
         mpz_add_ui( to_i, base, arraysize );

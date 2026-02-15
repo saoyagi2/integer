@@ -11,7 +11,7 @@ long long *primelist;
 
 int initprimelist( void );
 
-int main( int ac, char *av[] )
+int main( void )
 {
     long long base, sievesize, p, n, i, j, prev;
 
@@ -74,9 +74,8 @@ int initprimelist( void )
     /*  ふるいにかける    */
     for( n = 2; n * n <= MAX_N; n++ ) {
         if( sieve[n] == 1 ) {
-            for( i = n * n; i * i <= MAX_N; i+=n ) {
+            for( i = n * n; i * i <= MAX_N; i+=n )
                 sieve[i] = 0;
-            }
         }
     }
 

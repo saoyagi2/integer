@@ -76,9 +76,8 @@ int initprimelist( int max_n )
     /*  ふるいにかける    */
     for( n = 2; n * n <= max_n; n++ ) {
         if( sieve[n] == 1 ) {
-            for( i = n * n; i * i <= max_n; i+=n ) {
+            for( i = n * n; i * i <= max_n; i+=n )
                 sieve[i] = 0;
-            }
         }
     }
 

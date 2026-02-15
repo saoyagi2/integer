@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main( int ac, char *av[] )
+int main( void )
 {
     int count, i, n, tmp, types[10];
     char buf[1024];
@@ -14,13 +14,14 @@ int main( int ac, char *av[] )
             types[i] = 0;
         tmp = n;
         while( tmp != 0 ) {
-            types[tmp % 10]++;
+            types[tmp % 10] = 1;
             tmp /= 10;
         }
         count = 0;
-        for( i = 0; i < 10; i++ )
+        for( i = 0; i < 10; i++ ) {
             if( types[i] != 0 )
                 count++;
+        }
 
         printf( "%d %d\n", n, count );
     }

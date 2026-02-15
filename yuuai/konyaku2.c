@@ -4,7 +4,7 @@
 
 int array[ARRAY_SIZE_MAX];
 
-int main( int ac, char *av[] )
+int main( void )
 {
     int n, n2, i;
 

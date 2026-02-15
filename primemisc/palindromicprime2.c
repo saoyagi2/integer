@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main( int ac, char *av[] )
+int main( void )
 {
     long long n, tmp, n2, d, p;
     char buf[1024];

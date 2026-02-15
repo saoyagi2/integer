@@ -4,7 +4,6 @@
 
 char    sieve[SIEVE_SIZE];
 
-
 int main( void )
 {
     int n, i;

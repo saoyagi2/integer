@@ -15,17 +15,17 @@ int main( int ac, char *av[] )
 
     p = calloc( d, sizeof(int) );
     if( p == NULL )
-      return( -1 );
+        return( 1 );
     for( i = 0; i < d; i++ )
-      p[i] = -1;
+        p[i] = -1;
     while( fgets( buf, 1024, stdin ) ) {
         n = (int)strtol( buf, NULL, 10 );
         for( i = 0; i < d; i++ ) {
-          if( p[i] != -1 && n - d == p[i] )
-              printf( "%d %d\n", p[i], n );
+            if( p[i] != -1 && n - d == p[i] )
+                printf( "%d %d\n", p[i], n );
         }
         for( i = 1; i < d; i++ )
-          p[i - 1] = p[i];
+            p[i - 1] = p[i];
         p[d - 1] = n;
     }
 

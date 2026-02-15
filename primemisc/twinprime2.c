@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main( int ac, char *av[] )
+int main( void )
 {
     long long d, n, p;
     char buf[1024];

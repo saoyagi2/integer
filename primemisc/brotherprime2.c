@@ -15,18 +15,18 @@ int main( int ac, char *av[] )
 
     p = calloc( d2, sizeof(int) );
     if( p == NULL )
-      return( -1 );
+        return( 1 );
     for( i = 0; i < d2; i++ )
-      p[i] = 0;
+        p[i] = 0;
     while( fgets( buf, 1024, stdin ) ) {
         d = (int)strtol( buf, NULL, 10 );
         n = p[d2 - 1] + d;
         for( i = 1; i < d2; i++ ) {
-          if( p[i] != 0 && n - d2 == p[i] )
-              printf( "%lld %lld\n", p[i], n );
+            if( p[i] != 0 && n - d2 == p[i] )
+                printf( "%lld %lld\n", p[i], n );
         }
         for( i = 1; i < d2; i++ )
-          p[i - 1] = p[i];
+            p[i - 1] = p[i];
         p[d2 - 1] = n;
     }
 
