@@ -36,6 +36,9 @@ int main( int ac, char *av[] )
         /*  ふるいにかける    */
         for( i = 0; i < primelistcount; i++ ) {
             p = primelist[i];
+            if( p * p >= base + sievesize )
+                break;
+
             if( base <= p )
                 j = p;
             else if( base % p == 0 )
