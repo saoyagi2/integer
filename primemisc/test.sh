@@ -2,11 +2,13 @@
 
 . "../libtest.sh"
 
+exectest "./emirp 0 1" "bad parameter"
 exectest "./emirp 2 10" ""
 exectest "./emirp 2 100" "13 17 31 37 71 73 79 97"
 exectest "./emirp 900 1000" "907 937 941 953 967 971 983 991"
 exectest "./emirp 9900 10000" "9923 9931 9941 9967"
 
+exectest "./gmpemirp 0 1" "bad parameter"
 exectest "./gmpemirp 2 10" ""
 exectest "./gmpemirp 2 100" "13 17 31 37 71 73 79 97"
 exectest "./gmpemirp 900 1000" "907 937 941 953 967 971 983 991"
@@ -44,17 +46,21 @@ exectest "(echo 2; echo 1) | ./twinprime2" ""
 exectest "(echo 3; echo 2) | ./twinprime2" "3 5"
 exectest "(echo 7; echo 4) | ./twinprime2" ""
 
+exectest "./brotherprime 1" "bad parameter"
 exectest "(echo 2; echo 3) | ./brotherprime 4" ""
 exectest "(echo 3; echo 5) | ./brotherprime 4" ""
 exectest "(echo 7; echo 11) | ./brotherprime 4" "7 11"
 
+exectest "./brotherprime2 1" "bad parameter"
 exectest "(echo 2; echo 1) | ./brotherprime2 4" ""
 exectest "(echo 3; echo 2) | ./brotherprime2 4" ""
 exectest "(echo 7; echo 4) | ./brotherprime2 4" "7 11"
 
+exectest "./primegen 0 0 0 1" "bad parameter"
 exectest "./primegen 0 2 1 3" "0 1 NG 1 3 OK 2 5 OK 3 7 OK"
 exectest "./primegen 1 1 41 3" "0 41 OK 1 43 OK 2 47 OK 3 53 OK"
 
+exectest "./mersenne 0" "bad parameter"
 exectest "./mersenne 3" "OK"
 exectest "./mersenne 4" "NG"
 exectest "./mersenne 11" "NG"

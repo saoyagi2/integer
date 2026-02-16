@@ -12,6 +12,10 @@ int main( int ac, char *av[] )
         return( 1 );
     }
     d2 = strtoll( av[1], NULL, 10 );
+    if( d2 < 2 ) {
+        printf( "bad parameter\n" );
+        return( 1 );
+    }
 
     p = calloc( d2, sizeof(int) );
     if( p == NULL )

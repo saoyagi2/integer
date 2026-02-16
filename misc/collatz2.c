@@ -10,9 +10,14 @@ int main( int ac, char *av[] )
         printf( "usage : collatz min_n max_n\n" );
         return( 1 );
     }
-    mpz_init_set_str( min_n, av[1], 10 );
+    if( mpz_init_set_str( min_n, av[1], 10 ) == -1
+        || mpz_cmp_ui( min_n, 1 ) < 0
+        || mpz_init_set_str( max_n, av[2], 10 ) == -1
+        || mpz_cmp_ui( max_n, 1 ) < 0 ) {
+        printf( "bad parameter\n" );
+        return( 1 );
+    }
     mpz_fdiv_q_ui(min_n, min_n, 4);
-    mpz_init_set_str( max_n, av[2], 10 );
     mpz_fdiv_q_ui(max_n, max_n, 4);
 
     /*  探索範囲の数を調べる    */

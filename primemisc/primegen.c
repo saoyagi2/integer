@@ -17,7 +17,10 @@ int main( int ac, char *av[] )
     a = (int)strtol( av[1], NULL, 10 );
     b = (int)strtol( av[2], NULL, 10 );
     c = (int)strtol( av[3], NULL, 10 );
-    mpz_init_set_str( max_n, av[4], 10 );
+    if( mpz_init_set_str( max_n, av[4], 10 ) == -1 || mpz_cmp_ui( max_n, 2 ) < 0 ) {
+        printf( "bad parameter\n" );
+        return( 1 );
+    }
 
     /*  探索範囲の数を調べる    */
     mpz_init_set_ui( n, 0 );

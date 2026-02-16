@@ -15,6 +15,10 @@ int main( int ac, char *av[] )
         return( 1 );
     }
     p = (int)strtol( av[1], NULL, 10 );
+    if( p < 1 ) {
+        printf( "bad parameter\n" );
+        return( 1 );
+    }
 
     /*  メルセンヌ数を求める    */
     mpz_init_set_ui( m, 2 );

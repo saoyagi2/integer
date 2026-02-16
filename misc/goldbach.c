@@ -13,9 +13,11 @@ int main( int ac, char *av[] )
         return( 1 );
     }
     min_n = (int)strtol( av[1], NULL, 10 );
-    min_n = min_n % 2 == 1 ? min_n + 1 : min_n;
     max_n = (int)strtol( av[2], NULL, 10 );
-    max_n = max_n % 2 == 1 ? max_n + 1 : max_n;
+    if( min_n < 6 || max_n < 6 ) {
+        printf( "bad parameter\n" );
+        return( 1 );
+    }
 
     /*  探索範囲の数を調べる    */
     for( n = min_n; n <= max_n; n += 2 ) {

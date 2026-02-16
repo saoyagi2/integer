@@ -21,6 +21,10 @@ int main( int ac, char *av[] )
     }
     min_n = (int)strtol( av[1], NULL, 10 );
     max_n = (int)strtol( av[2], NULL, 10 );
+    if( min_n < 2 || max_n < 2 ) {
+        printf( "bad parameter\n" );
+        return( 1 );
+    }
 
     if( !initprimelist( max_n ) )
         return( 0 );

@@ -16,8 +16,10 @@ int main( int ac, char *av[] )
         return( 1 );
     }
     mark_count = (int)strtol( av[1], NULL, 10 );
-    if( mark_count < 2 )
-        mark_count = 2;
+    if( mark_count < 2 ) {
+        printf( "bad parameter\n" );
+        return( 1 );
+    }
 
     /* ruler用配列を確保する */
     ruler = calloc( mark_count, sizeof(int) );

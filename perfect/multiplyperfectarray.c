@@ -16,6 +16,10 @@ int main( int ac, char *av[] )
     }
     min_n = (int)strtol( av[1], NULL, 10 );
     max_n = (int)strtol( av[2], NULL, 10 );
+    if( min_n < 1 || max_n < 1 ) {
+        printf( "bad parameter\n" );
+        return( 1 );
+    }
 
     /*    ARRAY_SIZE_MAX分ごとの整数区間を調べる    */
     for( base = min_n; base < max_n; base += ARRAY_SIZE_MAX ) {
