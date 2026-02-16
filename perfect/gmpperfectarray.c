@@ -55,7 +55,7 @@ int main( int ac, char *av[] )
             if( mpz_cmp( base, mpz_i ) <= 0 ) {
                 mpz_mul_ui( mpz_j, mpz_i, 2 );
             }
-            else if( mpz_mod( tmp, base, mpz_i ), mpz_cmp_ui( tmp, 0 ) == 0 ) {
+            else if( mpz_tdiv_r( tmp, base, mpz_i ), mpz_cmp_ui( tmp, 0 ) == 0 ) {
                 mpz_set( mpz_j, base );
             }
             else {

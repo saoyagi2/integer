@@ -34,13 +34,13 @@ int main( int ac, char *av[] )
         while( mpz_cmp( n2, start_n ) >= 0 ) {
             if( mpz_even_p( n2 ) ) {
                 /*  偶数なら2で割る */
-                mpz_div_ui( n2, n2, 2 );
+                mpz_tdiv_q_ui( n2, n2, 2 );
             }
             else {
                 /*  奇数なら3を掛け1を加え、2で割る    */
                 mpz_mul_ui( n2, n2, 3 );
                 mpz_add_ui( n2, n2, 1 );
-                mpz_div_ui( n2, n2, 2 );
+                mpz_tdiv_q_ui( n2, n2, 2 );
             }
         }
 
