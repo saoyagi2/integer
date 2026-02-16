@@ -11,12 +11,12 @@ int main( int ac, char *av[] )
 
     /*  コマンドラインから指数を決定する    */
     if( ac < 2 ) {
-        printf( "usage : mersenne p\n" );
+        fprintf( stderr, "usage : mersenne p\n" );
         return( 1 );
     }
     p = (int)strtol( av[1], NULL, 10 );
     if( p < 1 ) {
-        printf( "bad parameter\n" );
+        fprintf( stderr, "bad parameter\n" );
         return( 1 );
     }
 

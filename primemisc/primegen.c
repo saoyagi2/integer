@@ -11,14 +11,14 @@ int main( int ac, char *av[] )
 
     /*  コマンドラインから係数と探索範囲を決定する    */
     if( ac < 5 ) {
-        printf( "usage : primegen a b c max_n\n" );
+        fprintf( stderr, "usage : primegen a b c max_n\n" );
         return( 1 );
     }
     a = (int)strtol( av[1], NULL, 10 );
     b = (int)strtol( av[2], NULL, 10 );
     c = (int)strtol( av[3], NULL, 10 );
     if( mpz_init_set_str( max_n, av[4], 10 ) == -1 || mpz_cmp_ui( max_n, 2 ) < 0 ) {
-        printf( "bad parameter\n" );
+        fprintf( stderr, "bad parameter\n" );
         return( 1 );
     }
 

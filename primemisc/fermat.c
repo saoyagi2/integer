@@ -11,7 +11,7 @@ int main( int ac, char *av[] )
 
     /*  コマンドラインから指数を決定する    */
     if( ac < 2 ) {
-        printf( "usage : fermat n\n" );
+        fprintf( stderr, "usage : fermat n\n" );
         return( 1 );
     }
     n = (int)strtol( av[1], NULL, 10 );

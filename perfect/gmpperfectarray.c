@@ -12,14 +12,14 @@ int main( int ac, char *av[] )
 
     /*  コマンドラインから完全数探索範囲を決定する    */
     if( ac < 3 ) {
-        printf( "usage : gmpperfectarray min_n max_n\n" );
+        fprintf( stderr, "usage : gmpperfectarray min_n max_n\n" );
         return( 1 );
     }
     if( mpz_init_set_str( min_n, av[1], 10 ) == -1
         || mpz_cmp_ui( min_n, 1 ) < 0
         || mpz_init_set_str( max_n, av[2], 10 ) == -1
         || mpz_cmp_ui( max_n, 1 ) < 0 ) {
-        printf( "bad parameter\n" );
+        fprintf( stderr, "bad parameter\n" );
         return( 1 );
     }
 

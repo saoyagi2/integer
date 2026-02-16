@@ -9,13 +9,13 @@ int main( int ac, char *av[] )
 
     /*  コマンドラインから素数探索範囲を決定する    */
     if( ac < 3 ) {
-        printf( "prime1 min_n max_n\n" );
+        fprintf( stderr, "prime1 min_n max_n\n" );
         return( 1 );
     }
     min_n = (int)strtol( av[1], NULL, 10 );
     max_n = (int)strtol( av[2], NULL, 10 );
     if( min_n < 2 || max_n < 2 ) {
-        printf( "bad parameter\n" );
+        fprintf( stderr, "bad parameter\n" );
         return( 1 );
     }
 

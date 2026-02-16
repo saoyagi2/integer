@@ -8,18 +8,20 @@ int main( int ac, char *av[] )
 
     /*  コマンドラインから差を決定する    */
     if( ac < 2 ) {
-        printf( "usage : brotherprime d\n" );
+        fprintf( stderr, "usage : brotherprime d\n" );
         return( 1 );
     }
     d = (int)strtol( av[1], NULL, 10 );
     if( d < 2 ) {
-        printf( "bad parameter\n" );
+        fprintf( stderr, "bad parameter\n" );
         return( 1 );
     }
 
     p = calloc( d, sizeof(int) );
-    if( p == NULL )
+    if( p == NULL ) {
+        fprintf( stderr, "calloc failed\n" );
         return( 1 );
+    }
     for( i = 0; i < d; i++ )
         p[i] = -1;
     while( fgets( buf, 1024, stdin ) ) {

@@ -8,13 +8,13 @@ int main( int ac, char *av[] )
 
     /*  コマンドラインから婚約数探索範囲を決定する    */
     if( ac < 3 ) {
-        printf( "usage : konyaku min_n max_n\n" );
+        fprintf( stderr, "usage : konyaku min_n max_n\n" );
         return( 1 );
     }
     min_n = (int)strtol( av[1], NULL, 10 );
     max_n = (int)strtol( av[2], NULL, 10 );
     if( min_n < 1 || max_n < 1 ) {
-        printf( "bad parameter\n" );
+        fprintf( stderr, "bad parameter\n" );
         return( 1 );
     }
 

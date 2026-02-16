@@ -16,8 +16,10 @@ int main( void )
     long long base, sievesize, p, n, i, j, prev;
 
     /*  序数側の素数一覧を生成  */
-    if( !initprimelist() )
-        return( 0 );
+    if( !initprimelist() ) {
+        fprintf( stderr, "initprimelist failed\n" );
+        return( 1 );
+    }
 
     prev = 0;
     /*  SIEVE_SIZE_MAX分ごとの整数区間をふるいにかける   */
