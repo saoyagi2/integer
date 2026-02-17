@@ -1,6 +1,6 @@
 CFLAGS	= -O3 -Wall
 
-OUTS	= konyaku konyaku2 syakou syakou2 yuuai yuuai2
+OUTS	= konyaku konyakuarray syakou syakouarray yuuai yuuaiarray
 
 .PHONY: all clean test
 
@@ -10,20 +10,20 @@ all:	$(OUTS)
 konyaku:	konyaku.c
 	cc $(CFLAGS) -o konyaku konyaku.c
 
-konyaku2:	konyaku2.c
-	cc $(CFLAGS) -o konyaku2 konyaku2.c
+konyakuarray:	konyakuarray.c
+	cc $(CFLAGS) -o konyakuarray konyakuarray.c
 
 syakou:	syakou.c
 	cc $(CFLAGS) -o syakou syakou.c
 
-syakou2:	syakou2.c
-	cc $(CFLAGS) -o syakou2 syakou2.c
+syakouarray:	syakouarray.c
+	cc $(CFLAGS) -o syakouarray syakouarray.c
 
 yuuai:	yuuai.c
 	cc $(CFLAGS) -o yuuai yuuai.c
 
-yuuai2:	yuuai2.c
-	cc $(CFLAGS) -o yuuai2 yuuai2.c
+yuuaiarray:	yuuaiarray.c
+	cc $(CFLAGS) -o yuuaiarray yuuaiarray.c
 
 test:
 	@./test.sh

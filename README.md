@@ -113,11 +113,11 @@ $ make test
 友愛数、婚約数、社交数を求めるプログラムです。
 
 * yuuai.c - 友愛数を求める
-* yuuai2.c - 約数の和配列を用いて友愛数を求める
+* yuuaiarray.c - 約数の和配列を用いて友愛数を求める
 * konyaku.c - 婚約数を求める
-* konyaku2.c - 約数の和配列を用いて婚約数を求める
+* konyakuarray.c - 約数の和配列を用いて婚約数を求める
 * syakou.c - 社交数を求める
-* syakou2.c - 約数の和配列を用いて社交数を求める
+* syakouarray.c - 約数の和配列を用いて社交数を求める
 
 ### misc
 
