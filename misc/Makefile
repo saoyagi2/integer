@@ -1,6 +1,6 @@
 CFLAGS	= -I/usr/local/include -L/usr/local/lib -O3 -Wall -lgmp
 
-OUTS	= collatz collatz2 goldbach goldbach2 gmpgoldbach2 ogr ogr2 pythagoras
+OUTS	= collatz collatz2 goldbach ogr ogr2 pythagoras
 
 .PHONY: all clean test
 
@@ -15,12 +15,6 @@ collatz2:	collatz2.c
 
 goldbach:	goldbach.c
 	cc $(CFLAGS) -o goldbach goldbach.c
-
-goldbach2:	goldbach2.c
-	cc $(CFLAGS) -o goldbach2 goldbach2.c
-
-gmpgoldbach2:	gmpgoldbach2.c
-	cc $(CFLAGS) -o gmpgoldbach2 gmpgoldbach2.c
 
 ogr:	ogr.c
 	cc $(CFLAGS) -o ogr ogr.c

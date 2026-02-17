@@ -15,12 +15,6 @@ exectest "./collatz2 4 100" ""
 exectest "./goldbach 5 5" "bad parameter"
 exectest "./goldbach 6 100" ""
 
-exectest "./goldbach2 5 5" "bad parameter"
-exectest "./goldbach2 6 100" ""
-
-exectest "./gmpgoldbach2 5 5" "bad parameter"
-exectest "./gmpgoldbach2 6 100" ""
-
 exectest "./ogr 1 " "bad parameter"
 exectest "./ogr 2" "0-1 1 nodes"
 exectest "./ogr 3" "0-1-3 0-2-3 2 nodes"
