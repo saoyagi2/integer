@@ -20,11 +20,11 @@ int main( int ac, char *av[] )
 
     /*  n を 4n+3 に揃える  */
     mpz_init_set( n, min_n );
+    mpz_init( tmp );
     mpz_tdiv_r_ui( tmp, n, 4 );
     mpz_add_ui( n, n, 3 - mpz_get_ui( tmp ) );
 
     /*  探索範囲の数を調べる    */
-    mpz_init( tmp );
     mpz_init( n2 );
     while( mpz_cmp( n, max_n ) <= 0 ) {
         /*  n2がn未満になれば計算終了   */

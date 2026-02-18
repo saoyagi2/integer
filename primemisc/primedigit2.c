@@ -2,15 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define BUF_SIZE  (1024)
+
 int main( void )
 {
     int count, i, types[10];
     long long p, tmp, prev_p;
-    char buf[1024];
+    char buf[BUF_SIZE];
 
     /*  素数の各桁を数える  */
     prev_p = 0;
-    while( fgets( buf, 1024, stdin ) ) {
+    while( fgets( buf, BUF_SIZE, stdin ) ) {
         p = prev_p + strtoll( buf, NULL, 10 );
 
         for( i = 0; i < 10; i++ )
