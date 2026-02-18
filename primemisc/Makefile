@@ -1,4 +1,6 @@
-CFLAGS  = -I/usr/local/include -L/usr/local/lib -O3 -Wall -lgmp
+CFLAGS  = -O3 -Wall
+
+GMPCFLAGS  = -I/usr/local/include -L/usr/local/lib -O3 -Wall -lgmp
 
 OUTS	= emirp palindromicprime palindromicprime2 primegen primedigit primedigit2 mersenne fermat twinprime twinprime2 brotherprime brotherprime2
 
@@ -8,7 +10,7 @@ OUTS	= emirp palindromicprime palindromicprime2 primegen primedigit primedigit2 
 all:	$(OUTS)
 
 emirp:	emirp.c
-	cc $(CFLAGS) -o emirp emirp.c
+	cc $(GMPCFLAGS) -o emirp emirp.c
 
 palindromicprime:	palindromicprime.c
 	cc $(CFLAGS) -o palindromicprime palindromicprime.c
@@ -17,19 +19,19 @@ palindromicprime2:	palindromicprime2.c
 	cc $(CFLAGS) -o palindromicprime2 palindromicprime2.c
 
 primegen:	primegen.c
-	cc $(CFLAGS) -o primegen -lgmp primegen.c
+	cc $(GMPCFLAGS) -o primegen primegen.c
 
 primedigit:	primedigit.c
 	cc $(CFLAGS) -o primedigit primedigit.c
 
 primedigit2:	primedigit2.c
-	cc $(CFLAGS) -o primedigit2 primedigit2.c
+	cc $(GMPCFLAGS) -o primedigit2 primedigit2.c
 
 mersenne:	mersenne.c
-	cc $(CFLAGS) -o mersenne -lgmp mersenne.c
+	cc $(GMPCFLAGS) -o mersenne mersenne.c
 
 fermat:	fermat.c
-	cc $(CFLAGS) -o fermat -lgmp fermat.c
+	cc $(GMPCFLAGS) -o fermat fermat.c
 
 twinprime:	twinprime.c
 	cc $(CFLAGS) -o twinprime twinprime.c

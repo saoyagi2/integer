@@ -1,4 +1,6 @@
-CFLAGS	= -I/usr/local/include -L/usr/local/lib -O3 -Wall -lgmp
+CFLAGS	= -O3 -Wall
+
+GMPCFLAGS	= -I/usr/local/include -L/usr/local/lib -O3 -Wall -lgmp
 
 OUTS	= collatz goldbach ogr ogr2 pythagoras
 
@@ -8,10 +10,10 @@ OUTS	= collatz goldbach ogr ogr2 pythagoras
 all:	$(OUTS)
 
 collatz:	collatz.c
-	cc $(CFLAGS) -o collatz collatz.c
+	cc $(GMPCFLAGS) -o collatz collatz.c
 
 goldbach:	goldbach.c
-	cc $(CFLAGS) -o goldbach goldbach.c
+	cc $(GMPCFLAGS) -o goldbach goldbach.c
 
 ogr:	ogr.c
 	cc $(CFLAGS) -o ogr ogr.c

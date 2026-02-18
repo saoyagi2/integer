@@ -20,10 +20,10 @@
 ```
 $ cd prime
 $ make
-cc -I/usr/local/include -L/usr/local/lib -O3 -Wall -lgmp -o prime1 prime1.c
-cc -I/usr/local/include -L/usr/local/lib -O3 -Wall -lgmp -o prime2 prime2.c
-cc -I/usr/local/include -L/usr/local/lib -O3 -Wall -lgmp -o prime3 prime3.c
-cc -I/usr/local/include -L/usr/local/lib -O3 -Wall -lgmp  prime10trillions.c  -o prime10trillions
+cc -O3 -Wall -o prime1 prime1.c
+cc -O3 -Wall -o prime2 prime2.c
+cc -O3 -Wall -o prime3 prime3.c
+cc -O3 -Wall -o prime10trillions prime10trillions.c
 cc -I/usr/local/include -L/usr/local/lib -O3 -Wall -lgmp -o gmpprime1 gmpprime1.c
 ```
 
