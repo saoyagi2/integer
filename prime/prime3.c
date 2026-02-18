@@ -67,6 +67,8 @@ int main( int ac, char *av[] )
         }
     }
 
+    free( primelist );
+
     return( 0 );
 }
 

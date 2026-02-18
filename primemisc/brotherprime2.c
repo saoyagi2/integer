@@ -37,5 +37,7 @@ int main( int ac, char *av[] )
         primelist[0] = n;
     }
 
+    free( primelist );
+
     return( 0 );
 }

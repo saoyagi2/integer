@@ -60,6 +60,8 @@ int main( void )
         }
     }
 
+    free( primelist );
+
     return( 0 );
 }
 

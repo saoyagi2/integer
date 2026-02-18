@@ -70,6 +70,8 @@ int main( int ac, char *av[] )
     /* 計算回数を表示 */
     printf( "%lld nodes\n", nodes );
 
+    free( ruler );
+
     return( 0 );
 }
 
