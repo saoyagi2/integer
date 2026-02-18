@@ -9,7 +9,7 @@ int main( int ac, char *av[] )
 
     /*  コマンドラインから探索範囲を決定する    */
     if( ac < 3 ) {
-        printf( "usage : goldbach min_n max_n\n" );
+        fprintf( stderr, "usage : goldbach min_n max_n\n" );
         return( 1 );
     }
     mpz_init_set_str( min_n, av[1], 10 );
@@ -20,7 +20,7 @@ int main( int ac, char *av[] )
         || mpz_init_set_str( max_n, av[2], 10 ) == -1
         || mpz_cmp_ui( max_n, 6 ) < 0
         || mpz_odd_p( max_n ) ) {
-        printf( "bad parameter\n" );
+        fprintf( stderr, "bad parameter\n" );
         return( 1 );
     }
 

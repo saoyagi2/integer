@@ -12,12 +12,12 @@ int main( int ac, char *av[] )
 
     /* コマンドラインからマーク数を決定する */
     if( ac < 2 ) {
-        printf( "usage : ogr mark_count\n" );
+        fprintf( stderr, "usage : ogr mark_count\n" );
         return( 1 );
     }
     mark_count = (int)strtol( av[1], NULL, 10 );
     if( mark_count < 2 ) {
-        printf( "bad parameter\n" );
+        fprintf( stderr, "bad parameter\n" );
         return( 1 );
     }
 
