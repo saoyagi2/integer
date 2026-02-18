@@ -55,8 +55,8 @@ exectest "./primegen 0 2 1 3" "0 1 NG 1 3 OK 2 5 OK 3 7 OK"
 exectest "./primegen 1 1 41 3" "0 41 OK 1 43 OK 2 47 OK 3 53 OK"
 
 exectest "./mersenne 0" "bad parameter"
+exectest "./mersenne 2" "OK"
 exectest "./mersenne 3" "OK"
-exectest "./mersenne 4" "NG"
 exectest "./mersenne 11" "NG"
 exectest "./mersenne 13" "OK"
 

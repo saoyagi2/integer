@@ -13,8 +13,14 @@ int main( int ac, char *av[] )
         return( 1 );
     }
     p = (int)strtol( av[1], NULL, 10 );
-    if( p < 1 ) {
+    if( p < 2 ) {
         fprintf( stderr, "bad parameter\n" );
+        return( 1 );
+    }
+
+    /*  p == 2 のみ個別判定 */
+    if( p == 2 ) {
+        printf( "OK\n" );
         return( 1 );
     }
 
@@ -28,7 +34,7 @@ int main( int ac, char *av[] )
     for( i = 2; i <= p - 1; i++ ) {
         mpz_mul( s, s, s );
         mpz_sub_ui( s, s, 2 );
-        mpz_mod( s, s, m );
+        mpz_tdiv_r( s, s, m );
     }
     if( mpz_cmp_ui( s, 0 ) == 0 )
         printf( "OK\n" );
