@@ -5,16 +5,15 @@
 #define SIEVE_SIZE_MAX   (100000000)
 
 char    sieve[SIEVE_SIZE_MAX];
-int primelistcount;
-int *primelist;
 
-int initprimelist( int max_n );
+int initprimelist( int max_n, int **primelist, int *primelistcount );
 
 int main( int ac, char *av[] )
 {
     int base, sievesize, p, n, min_n, max_n, i, j;
+    int *primelist, primelistcount;
 
-    /*  コマンドラインから素数探索範囲を決定する    */
+    /*  コマンドラインから探索範囲を決定する    */
     if( ac < 3 ) {
         fprintf( stderr, "usage : prime3 min_n max_n\n" );
         return( 1 );
@@ -26,7 +25,8 @@ int main( int ac, char *av[] )
         return( 1 );
     }
 
-    if( !initprimelist( max_n ) ) {
+    /*  序数側の素数一覧を生成  */
+    if( !initprimelist( max_n, &primelist, &primelistcount ) ) {
         fprintf( stderr, "initprimelist failed\n" );
         return( 1 );
     }
@@ -71,7 +71,7 @@ int main( int ac, char *av[] )
 }
 
 /*  序数側の素数一覧を生成  */
-int initprimelist( int max_n )
+int initprimelist( int max_n, int **primelist, int *primelistcount )
 {
     int n, i;
 
@@ -88,17 +88,16 @@ int initprimelist( int max_n )
     }
 
     /* 素数一覧配列にコピー */
-    primelistcount = 0;
+    *primelistcount = 0;
     for( n = 2; n * n <= max_n; n++ ) {
         if( sieve[n] == 1 )
-            primelistcount++;
+            (*primelistcount)++;
     }
-    primelist = calloc( primelistcount, sizeof(int) );
-    if( primelist == NULL )
+    if( ( *primelist = calloc( *primelistcount, sizeof(int) ) ) == NULL )
         return( 0 );
     for( n = 2, i = 0; n * n <= max_n; n++ ) {
         if( sieve[n] == 1 )
-            primelist[i++] = n;
+            (*primelist)[i++] = n;
     }
 
     return( 1 );

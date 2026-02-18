@@ -1,16 +1,16 @@
 #include <stdio.h>
 #include <gmp.h>
 
-#define ARRAY_SIZE_MAX   (100000000)
+#define DIVISORSUMLIST_SIZE_MAX   (100000000)
 
-mpz_t array[ARRAY_SIZE_MAX];
+mpz_t divisorsumlist[DIVISORSUMLIST_SIZE_MAX];
 
 int main( int ac, char *av[] )
 {
-    int arraysize, i, j;
-    mpz_t base, min_n, max_n, to_n, tmp, mpz_i, mpz_j, to_i, to_j;
+    int divisorsumlistsize, i, j;
+    mpz_t base, min_n, max_n, tmp, mpz_i, mpz_j, to_i, to_j;
 
-    /*  コマンドラインから完全数探索範囲を決定する    */
+    /*  コマンドラインから探索範囲を決定する    */
     if( ac < 3 ) {
         fprintf( stderr, "usage : perfectarray min_n max_n\n" );
         return( 1 );
@@ -28,30 +28,29 @@ int main( int ac, char *av[] )
     mpz_init( mpz_j );
     mpz_init( to_i );
     mpz_init( to_j );
-    mpz_init( to_n );
-    for( i = 0; i < ARRAY_SIZE_MAX; i++ )
-        mpz_init( array[i] );
+    for( i = 0; i < DIVISORSUMLIST_SIZE_MAX; i++ )
+        mpz_init( divisorsumlist[i] );
 
-    /*  ARRAY_SIZE_MAX分ごとの整数区間を調べる   */
-    for( mpz_init_set( base, min_n ); mpz_cmp( base, max_n ) < 0; mpz_add_ui( base, base, ARRAY_SIZE_MAX ) ) {
+    /*  DIVISORSUMLIST_SIZE_MAX分ごとの整数区間を調べる   */
+    mpz_init_set( base, min_n );
+    while( mpz_cmp( base, max_n ) < 0 ) {
         /*  整数区間配列の大きさを決める    */
         mpz_sub( tmp, max_n, base );
         mpz_add_ui( tmp, tmp, 1 );
-        if( mpz_cmp_ui( tmp, ARRAY_SIZE_MAX ) > 0 ) {
-            arraysize = ARRAY_SIZE_MAX;
-        }
-        else {
-            arraysize = mpz_get_ui( tmp );
-        }
+        if( mpz_cmp_ui( tmp, DIVISORSUMLIST_SIZE_MAX ) > 0 )
+            divisorsumlistsize = DIVISORSUMLIST_SIZE_MAX;
+        else
+            divisorsumlistsize = mpz_get_ui( tmp );
 
         /*  配列を初期化する    */
-        for( i = 0; i < arraysize; i++ )
-            mpz_set_ui( array[i], 0 );
+        for( i = 0; i < divisorsumlistsize; i++ )
+            mpz_set_ui( divisorsumlist[i], 0 );
 
         /*  約数の和を求める    */
-        mpz_add_ui( to_i, base, arraysize );
+        mpz_add_ui( to_i, base, divisorsumlistsize );
         mpz_tdiv_q_ui( to_i, to_i, 2 );
-        for( mpz_set_ui( mpz_i, 1 ); mpz_cmp( mpz_i, to_i ) < 0; mpz_add_ui( mpz_i, mpz_i, 1 ) ) {
+        mpz_set_ui( mpz_i, 1 );
+        while( mpz_cmp( mpz_i, to_i ) < 0 ) {
             if( mpz_cmp( base, mpz_i ) <= 0 ) {
                 mpz_mul_ui( mpz_j, mpz_i, 2 );
             }
@@ -63,26 +62,29 @@ int main( int ac, char *av[] )
                 mpz_add_ui( mpz_j, mpz_j, 1 );
                 mpz_mul( mpz_j, mpz_j, mpz_i );
             }
-            mpz_add_ui( to_j, base, arraysize );
+            mpz_add_ui( to_j, base, divisorsumlistsize );
             for( ; mpz_cmp( mpz_j, to_j ) < 0; mpz_add( mpz_j, mpz_j, mpz_i ) ) {
                 mpz_sub( tmp, mpz_j, base );
                 j = mpz_get_ui( tmp );
-                mpz_add( array[j], array[j], mpz_i );
+                mpz_add( divisorsumlist[j], divisorsumlist[j], mpz_i );
             }
+
+            mpz_add_ui( mpz_i, mpz_i, 1 );
         }
 
         /*  約数の和とその数自身が等しければ完全数である    */
-        for( i = 0; i < arraysize; i++ ) {
+        for( i = 0; i < divisorsumlistsize; i++ ) {
             mpz_add_ui( tmp, base, i );
-            if( mpz_cmp( array[i], tmp ) == 0 )
+            if( mpz_cmp( divisorsumlist[i], tmp ) == 0 )
                 gmp_printf( "%Zd\n", tmp );
         }
+
+        mpz_add_ui( base, base, DIVISORSUMLIST_SIZE_MAX );
     }
 
     mpz_clear( base );
     mpz_clear( min_n );
     mpz_clear( max_n );
-    mpz_clear( to_n );
     mpz_clear( tmp );
     mpz_clear( mpz_i );
     mpz_clear( mpz_j );

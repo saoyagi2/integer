@@ -4,18 +4,19 @@
 
 int main( void )
 {
-    int n, tmp, n2;
+    int n, p, tmp;
     char buf[1024];
 
+    /*  回文素数を探す  */
     while( fgets( buf, 1024, stdin ) ) {
-        n = tmp = (int)strtol( buf, NULL, 10 );
-        n2 = 0;
+        p = tmp = (int)strtol( buf, NULL, 10 );
+        n = 0;
         while( tmp != 0 ) {
-            n2 = n2 * 10 + tmp % 10;
+            n = n * 10 + tmp % 10;
             tmp /= 10;
         }
-        if( n == n2 )
-            printf( "%d\n", n );
+        if( p == n )
+            printf( "%d\n", p );
     }
 
     return( 0 );

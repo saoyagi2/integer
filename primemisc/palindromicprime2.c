@@ -4,21 +4,21 @@
 
 int main( void )
 {
-    long long n, tmp, n2, d, p;
+    long long n, p, tmp, prev_p;
     char buf[1024];
 
-    p = 0;
+    /*  回文素数を探す  */
+    prev_p = 0;
     while( fgets( buf, 1024, stdin ) ) {
-        d = strtoll( buf, NULL, 10 );
-        n = tmp = p + d;
-        n2 = 0;
+        p = tmp = prev_p + strtoll( buf, NULL, 10 );
+        n = 0;
         while( tmp != 0 ) {
-            n2 = n2 * 10 + tmp % 10;
+            n = n * 10 + tmp % 10;
             tmp /= 10;
         }
-        if( n == n2 )
-            printf( "%lld\n", n );
-        p = n;
+        if( p == n )
+            printf( "%lld\n", p );
+        prev_p = n;
     }
 
     return( 0 );

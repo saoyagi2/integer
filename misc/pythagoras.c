@@ -5,7 +5,7 @@ int main( int ac, char *av[] )
 {
     int a, b, c, aa, bb, cc, min_n, max_n;
 
-    /*  コマンドラインからピタゴラス探索範囲を決定する  */
+    /*  コマンドラインから探索範囲を決定する  */
     if( ac < 3 ) {
         printf( "usage : pythagoras min_n max_n\n" );
         return( 1 );

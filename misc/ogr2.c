@@ -25,9 +25,10 @@ int main( int ac, char *av[] )
     }
 
     /* ruler用配列を確保する */
-    ruler = calloc( mark_count, sizeof(int) );
-    if( ruler == NULL )
+    if( ( ruler = calloc( mark_count, sizeof(int) ) ) == NULL ) {
+        fprintf( stderr, "calloc failed\n" );
         return( 1 );
+    }
 
     /* 変数を初期化する */
     length = ogrlength[mark_count - 1];

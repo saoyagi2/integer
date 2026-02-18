@@ -7,7 +7,7 @@ int main( int ac, char *av[] )
 {
     int n, min_n, max_n;
 
-    /*  コマンドラインから素数探索範囲を決定する    */
+    /*  コマンドラインから探索範囲を決定する    */
     if( ac < 3 ) {
         fprintf( stderr, "prime1 min_n max_n\n" );
         return( 1 );

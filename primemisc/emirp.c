@@ -24,10 +24,13 @@ int main( int ac, char *av[] )
     /*  探索範囲の数を調べる    */
     mpz_init( tmp );
     mpz_init( n2 );
-    for( mpz_init_set( n, min_n ); mpz_cmp( n, max_n ) <= 0; mpz_add_ui( n, n, 1 ) ) {
+    mpz_init_set( n, min_n );
+    while( mpz_cmp( n, max_n ) <= 0 ) {
         /* nが素数でなかったら次へ */
-        if( !isprime( n ) )
+        if( !isprime( n ) ) {
+            mpz_add_ui( n, n, 1 );
             continue;
+        }
         /*  逆から読んだ数字が素数か調べる    */
         mpz_set( tmp, n );
         mpz_set_ui( n2, 0 );
@@ -37,10 +40,14 @@ int main( int ac, char *av[] )
             mpz_add_ui( n2, n2, m );
         }
         /* 元の数と同じ場合はエマープではない */
-        if( mpz_cmp( n, n2 ) == 0 )
+        if( mpz_cmp( n, n2 ) == 0 ) {
+            mpz_add_ui( n, n, 1 );
             continue;
+        }
         if( isprime( n2 ) )
             gmp_printf( "%Zd\n", n );
+
+        mpz_add_ui( n, n, 1 );
     }
 
     mpz_clear( n );

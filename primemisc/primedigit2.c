@@ -5,17 +5,17 @@
 int main( void )
 {
     int count, i, types[10];
-    long long d, n, tmp, p;
+    long long p, tmp, prev_p;
     char buf[1024];
 
-    p = 0;
+    /*  素数の各桁を数える  */
+    prev_p = 0;
     while( fgets( buf, 1024, stdin ) ) {
-        d = strtoll( buf, NULL, 10 );
-        n = p + d;
+        p = prev_p + strtoll( buf, NULL, 10 );
 
         for( i = 0; i < 10; i++ )
             types[i] = 0;
-        tmp = n;
+        tmp = p;
         while( tmp != 0 ) {
             types[tmp % 10] = 1;
             tmp /= 10;
@@ -26,9 +26,9 @@ int main( void )
                 count++;
         }
 
-        printf( "%lld %d\n", n, count );
+        printf( "%lld %d\n", p, count );
 
-        p = n;
+        prev_p = p;
     }
 
     return( 0 );

@@ -3,7 +3,7 @@
 
 int main( int ac, char *av[] )
 {
-    int i, n, *p, d;
+    int i, n, *primelist, d;
     char buf[1024];
 
     /*  コマンドラインから差を決定する    */
@@ -17,22 +17,24 @@ int main( int ac, char *av[] )
         return( 1 );
     }
 
-    p = calloc( d, sizeof(int) );
-    if( p == NULL ) {
+    /*  ペア候補素数を格納する配列を用意  */
+    if( ( primelist = calloc( d, sizeof(int) ) ) == NULL ) {
         fprintf( stderr, "calloc failed\n" );
         return( 1 );
     }
     for( i = 0; i < d; i++ )
-        p[i] = -1;
+        primelist[i] = 0;
+
+    /*  兄弟素数を探す  */
     while( fgets( buf, 1024, stdin ) ) {
         n = (int)strtol( buf, NULL, 10 );
         for( i = 0; i < d; i++ ) {
-            if( p[i] != -1 && n - d == p[i] )
-                printf( "%d %d\n", p[i], n );
+            if( primelist[i] != 0 && n - d == primelist[i] )
+                printf( "%d %d\n", primelist[i], n );
         }
         for( i = 1; i < d; i++ )
-            p[i - 1] = p[i];
-        p[d - 1] = n;
+            primelist[i] = primelist[i - 1];
+        primelist[0] = n;
     }
 
     return( 0 );

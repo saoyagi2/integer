@@ -4,15 +4,16 @@
 
 int main( void )
 {
-    int count, i, n, tmp, types[10];
+    int count, i, p, tmp, types[10];
     char buf[1024];
 
+    /*  素数の各桁を数える  */
     while( fgets( buf, 1024, stdin ) ) {
-        n = (int)strtol( buf, NULL, 10 );
+        p = (int)strtol( buf, NULL, 10 );
 
         for( i = 0; i < 10; i++ )
             types[i] = 0;
-        tmp = n;
+        tmp = p;
         while( tmp != 0 ) {
             types[tmp % 10] = 1;
             tmp /= 10;
@@ -23,7 +24,7 @@ int main( void )
                 count++;
         }
 
-        printf( "%d %d\n", n, count );
+        printf( "%d %d\n", p, count );
     }
 
     return( 0 );

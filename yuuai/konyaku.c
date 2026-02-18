@@ -3,10 +3,9 @@
 
 int main( int ac, char *av[] )
 {
-    int n, min_n, max_n;
-    int i, n2, n3;
+    int i, n, n2, tmp, min_n, max_n;
 
-    /*  コマンドラインから婚約数探索範囲を決定する    */
+    /*  コマンドラインから探索範囲を決定する    */
     if( ac < 3 ) {
         fprintf( stderr, "usage : konyaku min_n max_n\n" );
         return( 1 );
@@ -21,24 +20,20 @@ int main( int ac, char *av[] )
     /*  探索範囲の数を調べる    */
     for( n = min_n; n <= max_n; n++ ) {
         n2 = 0;
-        for( i = 2; i < n; i++ ) {
-            if( n % i == 0 ) {
+        for( i = 2; i <= n / 2; i++ ) {
+            if( n % i == 0 )
                 n2 += i;
-            }
         }
-        if( n2 <= n ) {
+        if( n2 <= n )
             continue;
-        }
 
-        n3 = 0;
-        for( i = 2; i < n2; i++ ) {
-            if( n2 % i == 0 ) {
-                n3 += i;
-            }
+        tmp = 0;
+        for( i = 2; i <= n2 / 2; i++ ) {
+            if( n2 % i == 0 )
+                tmp += i;
         }
-        if( n3 == n ) {
+        if( n == tmp )
             printf( "%d %d\n", n, n2 );
-        }
     }
 
     return( 0 );

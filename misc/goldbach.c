@@ -16,8 +16,10 @@ int main( int ac, char *av[] )
     mpz_init_set_str( max_n, av[2], 10 );
     if( mpz_init_set_str( min_n, av[1], 10 ) == -1
         || mpz_cmp_ui( min_n, 6 ) < 0
+        || mpz_odd_p( min_n )
         || mpz_init_set_str( max_n, av[2], 10 ) == -1
-        || mpz_cmp_ui( max_n, 6 ) < 0 ) {
+        || mpz_cmp_ui( max_n, 6 ) < 0
+        || mpz_odd_p( max_n ) ) {
         printf( "bad parameter\n" );
         return( 1 );
     }

@@ -5,10 +5,9 @@
 
 int main( int ac, char *av[] )
 {
-    int n, min_n, max_n;
-    int n_list[LIST_MAX], i, j;
+    int i, j, n, n_list[LIST_MAX], min_n, max_n;
 
-    /*  コマンドラインから社交数探索範囲を決定する    */
+    /*  コマンドラインから探索範囲を決定する    */
     if( ac < 3 ) {
         fprintf( stderr, "usage : syakou min_n max_n\n" );
         return( 1 );
@@ -26,18 +25,15 @@ int main( int ac, char *av[] )
         for( i = 1; i < LIST_MAX; i++ ) {
             n_list[i] = 0;
             for( j = 1; j <= n_list[i - 1] / 2; j++ ) {
-                if( n_list[i - 1] % j == 0 ) {
+                if( n_list[i - 1] % j == 0 )
                     n_list[i] += j;
-                }
             }
-            if( n_list[i] < n ) {
+            if( n_list[i] < n )
                 break;
-            }
             if( n_list[i] == n_list[0] ) {
                 if( i > 2 ) {
-                    for( j = 0; j < i; j++ ) {
+                    for( j = 0; j < i; j++ )
                         printf( "%d ", n_list[j] );
-                    }
                     printf( "\n" );
                 }
                 break;
