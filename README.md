@@ -105,8 +105,6 @@ $ make test
 * perfect.c - 完全数を求める
 * perfectarray.c - 約数の和配列を用いて完全数を求める
 * multiplyperfectarray.c - 約数の和配列を用いて倍積完全数を求める
-* gmpperfectarray.c - perfectarray.c の GMP 版
-* gmpmultiplyperfectarray.c - multiplyperfectarray.c の GMP 版
 
 ### yuuai
 
