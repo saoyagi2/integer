@@ -12,8 +12,6 @@ int main( int ac, char *av[] )
         fprintf( stderr, "usage : goldbach min_n max_n\n" );
         return( 1 );
     }
-    mpz_init_set_str( min_n, av[1], 10 );
-    mpz_init_set_str( max_n, av[2], 10 );
     if( mpz_init_set_str( min_n, av[1], 10 ) == -1
         || mpz_cmp_ui( min_n, 6 ) < 0
         || mpz_odd_p( min_n )
