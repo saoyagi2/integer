@@ -1,6 +1,6 @@
 CFLAGS  = -I/usr/local/include -L/usr/local/lib -O3 -Wall -lgmp
 
-OUTS	= emirp gmpemirp palindromicprime palindromicprime2 primegen primedigit primedigit2 mersenne fermat twinprime twinprime2 brotherprime brotherprime2
+OUTS	= emirp palindromicprime palindromicprime2 primegen primedigit primedigit2 mersenne fermat twinprime twinprime2 brotherprime brotherprime2
 
 .PHONY: all clean test
 
@@ -9,9 +9,6 @@ all:	$(OUTS)
 
 emirp:	emirp.c
 	cc $(CFLAGS) -o emirp emirp.c
-
-gmpemirp:	gmpemirp.c
-	cc $(CFLAGS) -o gmpemirp gmpemirp.c
 
 palindromicprime:	palindromicprime.c
 	cc $(CFLAGS) -o palindromicprime palindromicprime.c
