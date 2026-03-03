@@ -13,7 +13,7 @@ collatz:	collatz.c
 	cc $(GMPCFLAGS) -o collatz collatz.c
 
 goldbach:	goldbach.c
-	cc $(GMPCFLAGS) -o goldbach goldbach.c
+	cc $(CFLAGS) -o goldbach goldbach.c
 
 ogr:	ogr.c
 	cc $(CFLAGS) -o ogr ogr.c

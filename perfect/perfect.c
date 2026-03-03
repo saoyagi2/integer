@@ -3,15 +3,15 @@
 
 int main( int ac, char *av[] )
 {
-    int n, min_n, max_n, sum, i;
+    long long n, min_n, max_n, sum, i;
 
     /*  コマンドラインから探索範囲を決定する    */
     if( ac < 3 ) {
         fprintf( stderr, "usage : perfect min_n max_n\n" );
         return( 1 );
     }
-    min_n = (int)strtol( av[1], NULL, 10 );
-    max_n = (int)strtol( av[2], NULL, 10 );
+    min_n = strtoll( av[1], NULL, 10 );
+    max_n = strtoll( av[2], NULL, 10 );
     if( min_n < 1 || max_n < 1 ) {
         fprintf( stderr, "bad parameter\n" );
         return( 1 );
@@ -28,7 +28,7 @@ int main( int ac, char *av[] )
 
         /*  約数の和が自身に等しければ完全数である    */
         if( sum == n )
-            printf( "%d\n", n );
+            printf( "%lld\n", n );
     }
 
     return( 0 );

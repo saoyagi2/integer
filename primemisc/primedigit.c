@@ -6,12 +6,12 @@
 
 int main( void )
 {
-    int count, i, p, tmp, types[10];
+    long long count, i, p, tmp, types[10];
     char buf[BUF_SIZE];
 
     /*  素数の各桁を数える  */
     while( fgets( buf, BUF_SIZE, stdin ) ) {
-        p = (int)strtol( buf, NULL, 10 );
+        p = strtoll( buf, NULL, 10 );
 
         for( i = 0; i < 10; i++ )
             types[i] = 0;
@@ -26,7 +26,7 @@ int main( void )
                 count++;
         }
 
-        printf( "%d %d\n", p, count );
+        printf( "%lld %lld\n", p, count );
     }
 
     return( 0 );

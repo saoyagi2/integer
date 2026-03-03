@@ -6,20 +6,20 @@
 
 char    sieve[SIEVE_SIZE_MAX];
 
-int initprimelist( int max_n, int **primelist, int *primelistcount );
+int initprimelist( long long max_n, long long **primelist, long long *primelistcount );
 
 int main( int ac, char *av[] )
 {
-    int base, sievesize, p, n, min_n, max_n, i, j;
-    int *primelist, primelistcount;
+    long long base, sievesize, p, n, min_n, max_n, i, j;
+    long long *primelist, primelistcount;
 
     /*  コマンドラインから探索範囲を決定する    */
     if( ac < 3 ) {
         fprintf( stderr, "usage : prime3 min_n max_n\n" );
         return( 1 );
     }
-    min_n = (int)strtol( av[1], NULL, 10 );
-    max_n = (int)strtol( av[2], NULL, 10 );
+    min_n = strtoll( av[1], NULL, 10 );
+    max_n = strtoll( av[2], NULL, 10 );
     if( min_n < 2 || max_n < 2 ) {
         fprintf( stderr, "bad parameter\n" );
         return( 1 );
@@ -63,7 +63,7 @@ int main( int ac, char *av[] )
         /*  ふるいで残った数は素数である    */
         for( n = 0; n < sievesize; n++ ) {
             if( sieve[n] == 1 )
-                printf( "%d\n", base + n );
+                printf( "%lld\n", base + n );
         }
     }
 
@@ -73,9 +73,9 @@ int main( int ac, char *av[] )
 }
 
 /*  序数側の素数一覧を生成  */
-int initprimelist( int max_n, int **primelist, int *primelistcount )
+int initprimelist( long long max_n, long long **primelist, long long *primelistcount )
 {
-    int n, i;
+    long long n, i;
 
     /*  ふるいを初期化する    */
     for( n = 2; n * n <= max_n; n++ )

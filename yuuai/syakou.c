@@ -5,15 +5,15 @@
 
 int main( int ac, char *av[] )
 {
-    int i, j, n, n_list[LIST_MAX], min_n, max_n;
+    long long i, j, n, n_list[LIST_MAX], min_n, max_n;
 
     /*  コマンドラインから探索範囲を決定する    */
     if( ac < 3 ) {
         fprintf( stderr, "usage : syakou min_n max_n\n" );
         return( 1 );
     }
-    min_n = (int)strtol( av[1], NULL, 10 );
-    max_n = (int)strtol( av[2], NULL, 10 );
+    min_n = strtoll( av[1], NULL, 10 );
+    max_n = strtoll( av[2], NULL, 10 );
     if( min_n < 1 || max_n < 1 ) {
         fprintf( stderr, "bad parameter\n" );
         return( 1 );
@@ -33,7 +33,7 @@ int main( int ac, char *av[] )
             if( n_list[i] == n_list[0] ) {
                 if( i > 2 ) {
                     for( j = 0; j < i; j++ )
-                        printf( "%d ", n_list[j] );
+                        printf( "%lld ", n_list[j] );
                     printf( "\n" );
                 }
                 break;

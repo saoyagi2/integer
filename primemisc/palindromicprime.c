@@ -6,12 +6,12 @@
 
 int main( void )
 {
-    int n, p, tmp;
+    long long n, p, tmp;
     char buf[BUF_SIZE];
 
     /*  回文素数を探す  */
     while( fgets( buf, BUF_SIZE, stdin ) ) {
-        p = tmp = (int)strtol( buf, NULL, 10 );
+        p = tmp = strtoll( buf, NULL, 10 );
         if( p == 0 )
             continue;
         n = 0;
@@ -20,7 +20,7 @@ int main( void )
             tmp /= 10;
         }
         if( p == n )
-            printf( "%d\n", p );
+            printf( "%lld\n", p );
     }
 
     return( 0 );

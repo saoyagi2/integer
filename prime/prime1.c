@@ -1,19 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int isprime( int n );
+int isprime( long long n );
 
 int main( int ac, char *av[] )
 {
-    int n, min_n, max_n;
+    long long n, min_n, max_n;
 
     /*  コマンドラインから探索範囲を決定する    */
     if( ac < 3 ) {
         fprintf( stderr, "prime1 min_n max_n\n" );
         return( 1 );
     }
-    min_n = (int)strtol( av[1], NULL, 10 );
-    max_n = (int)strtol( av[2], NULL, 10 );
+    min_n = strtoll( av[1], NULL, 10 );
+    max_n = strtoll( av[2], NULL, 10 );
     if( min_n < 2 || max_n < 2 ) {
         fprintf( stderr, "bad parameter\n" );
         return( 1 );
@@ -22,15 +22,15 @@ int main( int ac, char *av[] )
     /*  探索範囲の数を調べる    */
     for( n = min_n; n <= max_n; n++ ) {
         if( isprime( n ) )
-            printf( "%d\n", n );
+            printf( "%lld\n", n );
     }
 
     return( 0 );
 }
 
-int isprime( int n )
+int isprime( long long n )
 {
-    int i, d;
+    long long i, d;
 
     /*  1以下は素数ではない */
     if( n <= 1 )

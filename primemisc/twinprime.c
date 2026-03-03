@@ -5,17 +5,17 @@
 
 int main( void )
 {
-    int p, prev_p;
+    long long p, prev_p;
     char buf[BUF_SIZE];
 
     /*  双子素数を探す  */
     prev_p = 0;
     while( fgets( buf, BUF_SIZE, stdin ) ) {
-        p = (int)strtol( buf, NULL, 10 );
+        p = strtoll( buf, NULL, 10 );
         if( p == 0 )
             continue;
         if( prev_p != 0 && p - prev_p == 2 )
-            printf( "%d %d\n", prev_p, p );
+            printf( "%lld %lld\n", prev_p, p );
         prev_p = p;
     }
 

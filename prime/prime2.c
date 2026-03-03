@@ -6,7 +6,7 @@ char    sieve[SIEVE_SIZE];
 
 int main( void )
 {
-    int n, i;
+    long long n, i;
 
     /*  ふるいを初期化する    */
     for( n = 2; n < SIEVE_SIZE; n++ )
@@ -23,7 +23,7 @@ int main( void )
     /*  ふるいで残った数は素数である    */
     for( n = 2; n < SIEVE_SIZE; n++ ) {
         if( sieve[n] == 1 )
-            printf( "%d\n", n );
+            printf( "%lld\n", n );
     }
 
     return( 0 );

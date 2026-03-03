@@ -3,11 +3,11 @@
 #define DIVISORSUMLIST_SIZE_MAX   (100000000)
 #define LIST_MAX   (100)
 
-int divisorsumlist[DIVISORSUMLIST_SIZE_MAX];
+long long divisorsumlist[DIVISORSUMLIST_SIZE_MAX];
 
 int main( void )
 {
-    int n, n_list[LIST_MAX], i, j;
+    long long n, n_list[LIST_MAX], i, j;
 
     /*  配列を初期化する    */
     for( n = 1; n < DIVISORSUMLIST_SIZE_MAX; n++ )
@@ -29,7 +29,7 @@ int main( void )
             if( n_list[i] == n_list[0] ) {
                 if( i > 2 ) {
                     for( j = 0; j < i; j++ )
-                        printf( "%d ", n_list[j] );
+                        printf( "%lld ", n_list[j] );
                     printf( "\n" );
                 }
                 break;

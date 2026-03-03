@@ -3,15 +3,15 @@
 
 int main( int ac, char *av[] )
 {
-    int i, n, n2, tmp, min_n, max_n;
+    long long i, n, n2, tmp, min_n, max_n;
 
     /*  コマンドラインから探索範囲を決定する    */
     if( ac < 3 ) {
         fprintf( stderr, "usage : yuuai min_n max_n\n" );
         return( 1 );
     }
-    min_n = (int)strtol( av[1], NULL, 10 );
-    max_n = (int)strtol( av[2], NULL, 10 );
+    min_n = strtoll( av[1], NULL, 10 );
+    max_n = strtoll( av[2], NULL, 10 );
     if( min_n < 1 || max_n < 1 ) {
         fprintf( stderr, "bad parameter\n" );
         return( 1 );
@@ -33,7 +33,7 @@ int main( int ac, char *av[] )
                 tmp += i;
         }
         if( n == tmp )
-            printf( "%d %d\n", n, n2 );
+            printf( "%lld %lld\n", n, n2 );
     }
 
     return( 0 );

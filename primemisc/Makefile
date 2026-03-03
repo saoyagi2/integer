@@ -10,7 +10,7 @@ OUTS	= emirp palindromicprime palindromicprime2 primegen primedigit primedigit2 
 all:	$(OUTS)
 
 emirp:	emirp.c
-	cc $(GMPCFLAGS) -o emirp emirp.c
+	cc $(CFLAGS) -o emirp emirp.c
 
 palindromicprime:	palindromicprime.c
 	cc $(CFLAGS) -o palindromicprime palindromicprime.c
@@ -25,7 +25,7 @@ primedigit:	primedigit.c
 	cc $(CFLAGS) -o primedigit primedigit.c
 
 primedigit2:	primedigit2.c
-	cc $(GMPCFLAGS) -o primedigit2 primedigit2.c
+	cc $(CFLAGS) -o primedigit2 primedigit2.c
 
 mersenne:	mersenne.c
 	cc $(GMPCFLAGS) -o mersenne mersenne.c
