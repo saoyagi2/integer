@@ -1,10 +1,14 @@
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include <limits.h>
 
 #define SIEVE_SIZE_MAX   (100000000)
+#define CLEARSIEVE(n) (sieve[(n)>>3] &= (~(1u<<((n) & 7))))
+#define SETSIEVE(n) (sieve[(n)>>3] |= (1u<<((n) & 7)))
+#define GETSIEVE(n) ((sieve[(n)>>3] & (1u<<((n) & 7))))
 
-char    sieve[SIEVE_SIZE_MAX];
+unsigned char sieve[SIEVE_SIZE_MAX>>3];
 
 int initprimelist( long long max_n, long long **primelist, long long *primelistcount );
 
@@ -40,8 +44,7 @@ int main( int ac, char *av[] )
             sievesize = max_n - base + 1;
 
         /*  ふるいを初期化する    */
-        for( n = 0; n < sievesize; n++ )
-            sieve[n] = 1;
+        memset( sieve, 0xFF, sizeof(sieve) );
 
         /*  ふるいにかける    */
         for( i = 0; i < primelistcount; i++ ) {
@@ -53,12 +56,12 @@ int main( int ac, char *av[] )
             if( j < p * p )
                 j = p * p;
             for( ; j < base + sievesize; j += p )
-                sieve[j - base] = 0;
+                CLEARSIEVE( j - base );
         }
 
         /*  ふるいで残った数は素数である    */
         for( n = 0; n < sievesize; n++ ) {
-            if( sieve[n] == 1 )
+            if( GETSIEVE( n ) )
                 printf( "%lld\n", base + n );
         }
     }
@@ -74,27 +77,26 @@ int initprimelist( long long max_n, long long **primelist, long long *primelistc
     long long n, i;
 
     /*  ふるいを初期化する    */
-    for( n = 2; n * n <= max_n; n++ )
-        sieve[n] = 1;
+    memset( sieve, 0xFF, sizeof(sieve) );
 
     /*  ふるいにかける    */
-    for( n = 2; n * n <= max_n; n++ ) {
-        if( sieve[n] == 1 ) {
-            for( i = n * n; i * i <= max_n; i+=n )
-                sieve[i] = 0;
+    for( n = 2; n <= max_n / n; n++ ) {
+        if( GETSIEVE( n ) ) {
+            for( i = n * n; i < max_n / i; i += n )
+                CLEARSIEVE( i );
         }
     }
 
     /* 素数一覧配列にコピー */
     *primelistcount = 0;
-    for( n = 2; n * n <= max_n; n++ ) {
-        if( sieve[n] == 1 )
+    for( n = 2; n <= max_n / n; n++ ) {
+        if( GETSIEVE( n ) )
             (*primelistcount)++;
     }
     if( ( *primelist = calloc( *primelistcount, sizeof(int) ) ) == NULL )
         return( 0 );
-    for( n = 2, i = 0; n * n <= max_n; n++ ) {
-        if( sieve[n] == 1 )
+    for( n = 2, i = 0; n <= max_n / n; n++ ) {
+        if( GETSIEVE( n ) )
             (*primelist)[i++] = n;
     }
 
