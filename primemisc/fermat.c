@@ -45,17 +45,13 @@ int isprime( const mpz_t n )
     mpz_t i, tmp;
     int d, ret;
 
-    /*  1以下は素数ではない */
-    if( mpz_cmp_si( n, 1 ) <= 0 )
-        return( 0 );
-
-    /*  2,3は素数 */
-    if( mpz_cmp_ui( n, 2 ) == 0 || mpz_cmp_ui( n, 3 ) == 0 )
-        return( 1 );
-
-    /*  2,3で割り切れたら合成数    */
-    if( mpz_even_p( n ) || mpz_divisible_ui_p( n, 3 ) )
-        return( 0 );
+    /*  mpz_probab_prime_p() で確定するか確認 */
+    switch( mpz_probab_prime_p( n, 25 ) ) {
+        case  0:
+            return( 0 );
+        case  2:
+            return( 1 );
+    }
 
     /*  自乗がn以下の2,3の倍数以外での剰余が0かどうか調べる   */
     d = 2;
