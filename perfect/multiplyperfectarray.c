@@ -35,12 +35,9 @@ int main( int ac, char *av[] )
 
         /*  約数の和を求める    */
         for( i = 1; i < ( base + divisorsumlistsize ) / 2; i++ ) {
-            if( base <= i )
+            j = ( base + i - 1 ) / i * i;
+            if( j < i * 2 )
                 j = i * 2;
-            else if( base % i == 0 )
-                j = base;
-            else
-                j = ( base / i + 1 ) * i;
             for( ; j < base + divisorsumlistsize; j += i )
                 divisorsumlist[j - base] += i;
         }

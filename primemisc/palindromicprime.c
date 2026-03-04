@@ -11,10 +11,10 @@ int main( void )
 
     /*  回文素数を探す  */
     while( fgets( buf, BUF_SIZE, stdin ) ) {
-        p = tmp = strtoll( buf, NULL, 10 );
-        if( p == 0 )
+        if( ( p = strtoll( buf, NULL, 10 ) ) == 0 )
             continue;
         n = 0;
+        tmp = p;
         while( tmp != 0 ) {
             n = n * 10 + tmp % 10;
             tmp /= 10;

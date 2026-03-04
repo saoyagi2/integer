@@ -5,7 +5,7 @@
 
 int main( int ac, char *av[] )
 {
-    long long i, n, *primelist, d;
+    long long i, p, *primelist, d;
     char buf[BUF_SIZE];
 
     /*  コマンドラインから差を決定する    */
@@ -29,16 +29,15 @@ int main( int ac, char *av[] )
 
     /*  兄弟素数を探す  */
     while( fgets( buf, BUF_SIZE, stdin ) ) {
-        n = strtoll( buf, NULL, 10 );
-        if( n == 0 )
+        if( ( p = strtoll( buf, NULL, 10 ) ) == 0 )
             continue;
         for( i = 0; i < d; i++ ) {
-            if( primelist[i] != 0 && n - primelist[i] == d)
-                printf( "%lld %lld\n", primelist[i], n );
+            if( primelist[i] != 0 && p - primelist[i] == d )
+                printf( "%lld %lld\n", primelist[i], p );
         }
-        for( i = 1; i < d; i++ )
+        for( i = d - 1; i > 0; i-- )
             primelist[i] = primelist[i - 1];
-        primelist[0] = n;
+        primelist[0] = p;
     }
 
     free( primelist );

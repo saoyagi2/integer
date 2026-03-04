@@ -49,13 +49,9 @@ int main( int ac, char *av[] )
             if( p * p >= base + sievesize )
                 break;
 
-            if( base <= p )
-                j = p;
-            else if( base % p == 0 )
-                j = base;
-            else
-                j = ( base / p + 1 ) * p;
-            j = j < p * p ? p * p : j;
+            j = ( base + p - 1 ) / p * p;
+            if( j < p * p )
+                j = p * p;
             for( ; j < base + sievesize; j += p )
                 sieve[j - base] = 0;
         }

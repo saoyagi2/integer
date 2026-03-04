@@ -11,7 +11,8 @@ int main( void )
 
     /*  素数の各桁を数える  */
     while( fgets( buf, BUF_SIZE, stdin ) ) {
-        p = strtoll( buf, NULL, 10 );
+        if( ( p = strtoll( buf, NULL, 10 ) ) == 0 )
+            continue;
 
         for( i = 0; i < 10; i++ )
             types[i] = 0;

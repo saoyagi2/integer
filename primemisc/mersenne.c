@@ -25,13 +25,13 @@ int main( int ac, char *av[] )
     }
 
     /*  メルセンヌ数を求める    */
-    mpz_init_set_ui( m, 2 );
-    mpz_pow_ui( m, m, p );
+    mpz_init( m );
+    mpz_setbit( m, p );
     mpz_sub_ui( m, m, 1 );
 
     /*  リュカ-レーマー法で素数判定する */
     mpz_init_set_ui( s, 4 );
-    for( i = 2; i <= p - 1; i++ ) {
+    for( i = 0; i < p - 2; i++ ) {
         mpz_mul( s, s, s );
         mpz_sub_ui( s, s, 2 );
         mpz_tdiv_r( s, s, m );

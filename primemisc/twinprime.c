@@ -11,8 +11,7 @@ int main( void )
     /*  双子素数を探す  */
     prev_p = 0;
     while( fgets( buf, BUF_SIZE, stdin ) ) {
-        p = strtoll( buf, NULL, 10 );
-        if( p == 0 )
+        if( ( p = strtoll( buf, NULL, 10 ) ) == 0 )
             continue;
         if( prev_p != 0 && p - prev_p == 2 )
             printf( "%lld %lld\n", prev_p, p );
