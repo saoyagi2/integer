@@ -61,13 +61,9 @@ $ make test
 
 * emirp.c - エマープを求める
 * palindromicprime.c - 素数一覧から回文素数を探し出す
-* palindromicprime2.c - 差分形式の素数一覧から回文素数を探し出す
 * primedigit.c - 素数一覧から各素数の各桁を数える
-* primedigit2.c - 差分形式の素数一覧から各素数の各桁を数える
 * twinprime.c - 素数一覧から双子素数を探し出す
-* twinprime2.c - 差分形式の素数一覧から双子素数を探す
 * brotherprime.c - 素数一覧から兄弟素数を探す
-* brotherprime2.c - 差分形式の素数一覧から兄弟素数を探す
 * primegen.c - 素数生成式の素数生成成績を検証する
 * mersenne.c - メルセンヌ数が素数か判定する
 * fermat.c - フェルマー数が素数か判定する
@@ -122,6 +118,13 @@ $ make test
 * goldbach.c - ゴールドバッハ予想を検証する
 * ogr.c - 総当たり法で最適ゴロム定規を求める
 * ogr2.c - バックトラック法で最適ゴロム定規を求める
+
+### tools
+
+ツール類です。
+
+* primes2diff.c - 素数一覧を差分形式に変換する
+* diff2primes.c - 差分形式を素数一覧に変換する
 
 ### 注意点
 

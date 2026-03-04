@@ -5,13 +5,9 @@ prime/prime2
 prime/prime3
 primemisc/emirp
 primemisc/palindromicprime
-primemisc/palindromicprime2
 primemisc/primedigit
-primemisc/primedigit2
 primemisc/twinprime
-primemisc/twinprime2
 primemisc/brotherprime
-primemisc/brotherprime2
 primemisc/primegen
 primemisc/fermat
 primemisc/mersenne
@@ -29,3 +25,5 @@ misc/collatz
 misc/goldbach
 misc/ogr
 misc/ogr2
+tools/primes2diff
+tools/diff2primes

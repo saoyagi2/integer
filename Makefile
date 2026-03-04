@@ -1,4 +1,4 @@
-SUBDIRS = misc perfect prime primemisc yuuai
+SUBDIRS = misc perfect prime primemisc yuuai tools
 
 .PHONY: all clean test
 

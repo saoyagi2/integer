@@ -13,42 +13,21 @@ exectest "(echo 2) | ./palindromicprime" "2"
 exectest "(echo 11; echo 13) | ./palindromicprime" "11"
 exectest "(echo 101; echo 103) | ./palindromicprime" "101"
 
-exectest "echo -n | ./palindromicprime2" ""
-exectest "(echo 2) | ./palindromicprime2" "2"
-exectest "(echo 11; echo 2) | ./palindromicprime2" "11"
-exectest "(echo 101; echo 2) | ./palindromicprime2" "101"
-
 exectest "echo -n | ./primedigit" ""
 exectest "(echo 2) | ./primedigit" "2 1"
 exectest "(echo 2; echo 3) | ./primedigit" "2 1 3 1"
 exectest "echo 11 | ./primedigit" "11 1"
 exectest "echo 13 | ./primedigit" "13 2"
 
-exectest "echo -n | ./primedigit2" ""
-exectest "(echo 2) | ./primedigit2" "2 1"
-exectest "(echo 2; echo 1) | ./primedigit2" "2 1 3 1"
-exectest "echo 11 | ./primedigit2" "11 1"
-exectest "echo 13 | ./primedigit2" "13 2"
-
 exectest "echo -n | ./twinprime" ""
 exectest "(echo 2; echo 3) | ./twinprime" ""
 exectest "(echo 3; echo 5) | ./twinprime" "3 5"
 exectest "(echo 7; echo 11) | ./twinprime" ""
 
-exectest "echo -n | ./twinprime2" ""
-exectest "(echo 2; echo 1) | ./twinprime2" ""
-exectest "(echo 3; echo 2) | ./twinprime2" "3 5"
-exectest "(echo 7; echo 4) | ./twinprime2" ""
-
 exectest "./brotherprime 1" "bad parameter"
 exectest "(echo 2; echo 3) | ./brotherprime 4" ""
 exectest "(echo 3; echo 5) | ./brotherprime 4" ""
 exectest "(echo 7; echo 11) | ./brotherprime 4" "7 11"
-
-exectest "./brotherprime2 1" "bad parameter"
-exectest "(echo 2; echo 1) | ./brotherprime2 4" ""
-exectest "(echo 3; echo 2) | ./brotherprime2 4" ""
-exectest "(echo 7; echo 4) | ./brotherprime2 4" "7 11"
 
 exectest "./primegen 0 0 0 1" "bad parameter"
 exectest "./primegen 0 2 1 3" "0 1 NG 1 3 OK 2 5 OK 3 7 OK"
