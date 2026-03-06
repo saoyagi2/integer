@@ -36,7 +36,7 @@ int main( int ac, char *av[] )
     }
 
     /*  SIEVE_SIZE_MAX分ごとの整数区間をふるいにかける   */
-    for( base = min_n; base < max_n; base += SIEVE_SIZE_MAX ) {
+    for( base = min_n; base <= max_n; base += SIEVE_SIZE_MAX ) {
         /*  整数区間配列の大きさを決める    */
         if( max_n - base + 1 > SIEVE_SIZE_MAX )
             sievesize = SIEVE_SIZE_MAX;
