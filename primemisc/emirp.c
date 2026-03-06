@@ -62,7 +62,7 @@ int isprime( long long n )
 
     /*  自乗がn以下の2,3の倍数以外での剰余が0かどうか調べる   */
     d = 2;
-    for( i = 5; i * i <= n; i += d, d = ( d == 2 ? 4 : 2 ) ) {
+    for( i = 5; i <= n / i; i += d, d = ( d == 2 ? 4 : 2 ) ) {
         if( n % i == 0 )
             return( 0 );
     }
