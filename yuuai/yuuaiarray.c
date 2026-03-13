@@ -21,24 +21,25 @@ int main( int ac, char *av[] )
         return( 1 );
     }
 
-    /*  DIVISORSUMLIST_SIZE_MAX分ごとの整数区間を調べる   */
-    for( base = min_n; base <= max_n; base += DIVISORSUMLIST_SIZE_MAX ) {
+    /*  DIVISORSUMLIST_SIZE_MAX / 2 ごとの整数区間を調べる   */
+    /*  約数和配列自体は最大 DIVISORSUMLIST_SIZE_MAX まで求める(ペア数字が配列内に収まりやすくするため) */
+    for( base = min_n; base <= max_n; base += DIVISORSUMLIST_SIZE_MAX / 2 ) {
         /*  整数区間配列の大きさを決める    */
-        if( max_n - base + 1 > DIVISORSUMLIST_SIZE_MAX )
-            divisorsumlistsize = DIVISORSUMLIST_SIZE_MAX;
+        if( max_n - base + 1 > DIVISORSUMLIST_SIZE_MAX / 2 )
+            divisorsumlistsize = DIVISORSUMLIST_SIZE_MAX / 2;
         else
             divisorsumlistsize = max_n - base + 1;
 
         /*  配列を初期化する    */
-        for( i = 0; i < divisorsumlistsize; i++ )
+        for( i = 0; i < divisorsumlistsize * 2; i++ )
             divisorsumlist[i] = 0;
 
         /*  約数の和を求める    */
-        for( i = 1; i <= ( base + divisorsumlistsize ) / 2; i++ ) {
+        for( i = 1; i <= ( base + divisorsumlistsize * 2 ) / 2; i++ ) {
             j = ( base + i - 1 ) / i * i;
             if( j < i * 2 )
                 j = i * 2;
-            for( ; j < base + divisorsumlistsize; j += i )
+            for( ; j < base + divisorsumlistsize * 2; j += i )
                 divisorsumlist[j - base] += i;
         }
 
@@ -46,7 +47,7 @@ int main( int ac, char *av[] )
         for( i = 0; i < divisorsumlistsize; i++ ) {
             n = base + i;
             n2 = divisorsumlist[i];
-            if( n2 < base + divisorsumlistsize ) {
+            if( n2 < base + divisorsumlistsize * 2 ) {
                 if( n < n2 && divisorsumlist[n2 - base] == n )
                     printf( "%lld %lld\n", n, n2 );
             }
