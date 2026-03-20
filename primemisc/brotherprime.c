@@ -20,7 +20,7 @@ int main( int ac, char *av[] )
     }
 
     /*  ペア候補素数を格納する配列を用意  */
-    if( ( primelist = calloc( d, sizeof(int) ) ) == NULL ) {
+    if( ( primelist = calloc( d, sizeof(long long) ) ) == NULL ) {
         fprintf( stderr, "calloc failed\n" );
         return( 1 );
     }

@@ -82,7 +82,7 @@ int initprimelist( long long max_n, long long **primelist, long long *primelistc
     /*  ふるいにかける    */
     for( n = 2; n <= max_n / n; n++ ) {
         if( GETSIEVE( n ) ) {
-            for( i = n * n; i < max_n / i; i += n )
+            for( i = n * n; i <= max_n / i; i += n )
                 CLEARSIEVE( i );
         }
     }
@@ -93,7 +93,7 @@ int initprimelist( long long max_n, long long **primelist, long long *primelistc
         if( GETSIEVE( n ) )
             (*primelistcount)++;
     }
-    if( ( *primelist = calloc( *primelistcount, sizeof(int) ) ) == NULL )
+    if( ( *primelist = calloc( *primelistcount, sizeof(long long) ) ) == NULL )
         return( 0 );
     for( n = 2, i = 0; n <= max_n / n; n++ ) {
         if( GETSIEVE( n ) )
