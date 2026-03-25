@@ -54,9 +54,12 @@ int main( int ac, char *av[] )
             else {
                 /*  配列の範囲外の場合は個別計算する  */
                 tmp = 0;
-                for( j = 1; j <= n2 / 2; j++ ) {
-                    if( n2 % j == 0 )
+                for( j = 1; j <= n2 / j; j++ ) {
+                    if( n2 % j == 0 ) {
                         tmp += j;
+                        if( n2 / j != j && j != 1 )
+                            tmp += ( n2 / j );
+                    }
                 }
                 if( n == tmp )
                     printf( "%lld %lld\n", n, n2 );

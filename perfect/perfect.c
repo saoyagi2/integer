@@ -21,9 +21,12 @@ int main( int ac, char *av[] )
     for( n = min_n; n <= max_n; n++ ) {
         /*  約数の和を求める  */
         sum = 0;
-        for( i = 1; i < n; i++ ) {
-            if( n % i == 0 )
+        for( i = 1; i <= n / i; i++ ) {
+            if( n % i == 0 ) {
                 sum += i;
+                if( n / i != i && i != 1 )
+                    sum += ( n / i );
+            }
         }
 
         /*  約数の和が自身に等しければ完全数である    */

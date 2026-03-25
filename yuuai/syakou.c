@@ -24,9 +24,12 @@ int main( int ac, char *av[] )
         n_list[0] = n;
         for( i = 1; i < LIST_MAX; i++ ) {
             n_list[i] = 0;
-            for( j = 1; j <= n_list[i - 1] / 2; j++ ) {
-                if( n_list[i - 1] % j == 0 )
+            for( j = 1; j <= n / j; j++ ) {
+                if( n_list[i - 1] % j == 0 ) {
                     n_list[i] += j;
+                    if( n_list[i - 1] / j != j && j != 1 )
+                        n_list[i] += ( n_list[i - 1] / j );
+                }
             }
             if( n_list[i] < n )
                 break;

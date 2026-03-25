@@ -20,9 +20,12 @@ int main( int ac, char *av[] )
     /*  探索範囲の数を調べる    */
     for( n = min_n; n <= max_n; n++ ) {
         n2 = 0;
-        for( i = 1; i <= n / 2; i++ ) {
-            if( n % i == 0 )
+        for( i = 1; i <= n / i; i++ ) {
+            if( n % i == 0 ) {
                 n2 += i;
+                if( n / i != i && i != 1 )
+                    n2 += ( n / i );
+            }
         }
         if( n2 <= n )
             continue;

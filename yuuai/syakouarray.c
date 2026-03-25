@@ -53,9 +53,12 @@ int main( int ac, char *av[] )
                 else {
                     /*  配列の範囲外の場合は個別計算する  */
                     n_list[j] = 0;
-                    for( k = 1; k <= n_list[j - 1] / 2; k++ ) {
-                        if( n_list[j - 1] % k == 0 )
+                    for( k = 1; k <= n_list[j - 1] / k; k++ ) {
+                        if( n_list[j - 1] % k == 0 ) {
                             n_list[j] += k;
+                            if( n_list[j - 1] / k != k && k != 1 )
+                                n_list[j] += ( n_list[j - 1] / k );
+                        }
                     }
                 }
                 if( n_list[j] < n_list[0] )
