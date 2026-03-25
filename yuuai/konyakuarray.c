@@ -47,8 +47,10 @@ int main( int ac, char *av[] )
         for( i = 0; i < divisorsumlistsize; i++ ) {
             n = base + i;
             n2 = divisorsumlist[i];
+            if( n2 <= n )
+                continue;
             if( n2 < base + divisorsumlistsize * 2 ) {
-                if( n < n2 && divisorsumlist[n2 - base] == n )
+                if( divisorsumlist[n2 - base] == n )
                     printf( "%lld %lld\n", n, n2 );
             }
             else {
